@@ -3,10 +3,11 @@
 <title>Ourwebsite.com</title>
 <style>
 body  {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-image: url("forest.jpg");
-    background-size: 100% 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #008080;
+    background-size: relative;
+    background-position: center;
     background-repeat: no-repeat;
     style="z-index:=-5";
 }

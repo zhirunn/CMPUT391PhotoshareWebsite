@@ -1,70 +1,27 @@
 <html lang = "en">
 <head>
 <title>Ourwebsite.com/register</title>
-<style>
-body  {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-image: url("forest.jpg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    style="z-index:=-5";
-}
 
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-  color: #017572;
-}
-
-.form-signin .form-signin-heading,
-  .form-signin .checkbox {
-  margin-bottom: 10px;
-}
- 
-.form-signin .checkbox {
-  font-weight: normal;
-}
- 
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
- 
-.form-signin .form-control:focus {
-  z-index: 2;
-}
- 
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-color:#017572;
-}
- 
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-color:#017572;
-}
- 
-h2{
-  text-align: center;
-  color: #017572;
-}
-</style>
+<html>
+   <head><title>REGISTER NEW ACCOUNT</title></head>
+   <body>
+   <h1>Create a New Account</h1>
+    <form id ='register' action='register.php' method='post'
+    accept-charset='UTF-8' align="centre">
+    First Name : <input type="text" name="first_name"/><br/>
+    Last Name : <input type="text" name="last_name"/><br/>
+    E-mail Address : <input type="text" name="email"/><br/>
+    Address: <input type="text" name="address"/><br/>
+    Phone Number: <input type="text" name="phone"/><br/>
+    Username: <input type="text" name="user_name"/><br/>
+    Password: <input type"text" name="password"/><br/>
+    <input type="submit" name="validate" value="OK"/>
+    </form>
+   </body>
+</html>
 
 
-
-<h1><center>Enter A New Username and Password</center></h1>
-<div class = "container form-signin">
+<div class = "container form-register">
          
 <?php
    $msg = '';
