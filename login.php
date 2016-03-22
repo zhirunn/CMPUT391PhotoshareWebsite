@@ -98,7 +98,6 @@ h2{
        name = "password" placeholder = "password = 1234" required>
     <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
        name = "login">Login</button>
-
 	<button class = "btn btn-lg btn-primary btn-block" type = "submit" 
        name = "register">Register</button>
  </form>
