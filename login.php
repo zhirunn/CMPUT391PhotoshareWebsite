@@ -98,9 +98,11 @@ h2{
        name = "password" placeholder = "password = 1234" required>
     <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
        name = "login">Login</button>
-	<button class = "btn btn-lg btn-primary btn-block" type = "submit" 
-       name = "register">Register</button>
  </form>
+
+ <form class = "form-register" role = "form"
+    action = "register.php" method = "post">
+    <button class = "btn btn-lg btn-primary btn-block" type= "submit" name="register">Register</button>
 		
  Click here to logout <a href = "logout.php" tite = "Logout">Logout.
  

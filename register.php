@@ -1,6 +1,6 @@
 <html lang = "en">
 <head>
-<title>Ourwebsite.com</title>
+<title>Ourwebsite.com/register</title>
 <style>
 body  {
     padding-top: 40px;
@@ -63,7 +63,7 @@ h2{
 
 
 
-<h1><center>Enter Your Username and Password</center></h1>
+<h1><center>Enter A New Username and Password</center></h1>
 <div class = "container form-signin">
          
 <?php
@@ -72,13 +72,13 @@ h2{
    if (isset($_POST['login']) && !empty($_POST['username']) 
       && !empty($_POST['password'])) {
 		
-      if ($_POST['username'] == 'naoki' && 
+      if ($_POST['username'] == 'user' && 
          $_POST['password'] == '1234') {
          $_SESSION['valid'] = true;
          $_SESSION['timeout'] = time();
-         $_SESSION['username'] = 'naoki';
+         $_SESSION['username'] = 'user';
          
-         echo 'You have entered valid use name and password';
+         echo 'You have entered a valid username and password';
       }else {
          $msg = 'Wrong username or password';
       }
@@ -88,25 +88,13 @@ h2{
 
 <div class = "container">
 
- <form class = "form-signin" role = "form" 
+ <form class = "form-register" role = "form"
     action = "PHPexample3.php" method = "post">
-    <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
-    <input type = "text" class = "form-control" 
-       name = "username" placeholder = "username = naoki" 
-       required autofocus></br>
-    <input type = "password" class = "form-control"
-       name = "password" placeholder = "password = 1234" required>
-    <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
-       name = "login">Login</button>
-	<button class = "btn btn-lg btn-primary btn-block" type = "submit" 
-       name = "register">Register New Account</button>
-	
- </form>
+    <button class = "btn btn-lg btn-primary btn-block" type= "submit" name="register">Register</button>
 		
- Click here to logout <a href = "logout.php" tite = "Logout">Logout.
- 
 </div> 
 
 </body>
 </html>
+
 
