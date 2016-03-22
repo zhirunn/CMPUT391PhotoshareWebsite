@@ -2,12 +2,24 @@
 <head>
 <title>Ourwebsite.com/register</title>
 
+<style>
+  body{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #008080;
+    background-size: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    style="z-index:=-5";
+}
+</style>
+
 <html>
    <head><title>REGISTER NEW ACCOUNT</title></head>
    <body>
    <h1>Create a New Account</h1>
     <form id ='register' action='register.php' method='post'
-    accept-charset='UTF-8' align="centre">
+    accept-charset='UTF-8'>
     First Name : <input type="text" name="first_name"/><br/>
     Last Name : <input type="text" name="last_name"/><br/>
     E-mail Address : <input type="text" name="email"/><br/>
@@ -15,13 +27,10 @@
     Phone Number: <input type="text" name="phone"/><br/>
     Username: <input type="text" name="user_name"/><br/>
     Password: <input type"text" name="password"/><br/>
-    <input type="submit" name="validate" value="OK"/>
+    <input type="submit" name="validate" value="Register Account"/>
     </form>
    </body>
 </html>
-
-
-<div class = "container form-register">
          
 <?php
    $msg = '';
@@ -42,14 +51,6 @@
    }
 ?>
 </div>
-
-<div class = "container">
-
- <form class = "form-register" role = "form"
-    action = "PHPexample3.php" method = "post">
-    <button class = "btn btn-lg btn-primary btn-block" type= "submit" name="register">Register</button>
-		
-</div> 
 
 </body>
 </html>
