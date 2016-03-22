@@ -13,8 +13,8 @@
 }</style>
 
 <body>
-   <h1>Create a New Account</h1>
-    <form id ='register' action='register.php' method='get'
+    <h1>Create a New Account</h1>
+    <form id ='register' action='registerconfirmation.php' method='get'
     accept-charset='UTF-8'>
     First Name : <input type="text" name="first_name"/><br/>
     Last Name : <input type="text" name="last_name"/><br/>
@@ -25,11 +25,6 @@
     Password: <input type"text" name="password"/><br/>
     <input type="submit" name="validate" value="Register Account"/>
     </form>
-    <div class = "container form-signin">
-    <?php
-      $username = $_GET['username'];
-      $password = $_GET['password']
-    ?>
 </body>
          
 

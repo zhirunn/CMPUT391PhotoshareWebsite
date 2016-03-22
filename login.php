@@ -6,7 +6,6 @@ body  {
     padding-top: 5%;
     padding-bottom: 5%;
     background-color: #008080;
-    background-image: "confirmed.jpg";
     background-size: relative;
     background-position: center;
     background-repeat: no-repeat;
