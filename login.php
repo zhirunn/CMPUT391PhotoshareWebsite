@@ -78,7 +78,7 @@ h2{
          $_SESSION['timeout'] = time();
          $_SESSION['username'] = 'user';
          
-         echo 'You have entered valid use name and password';
+         echo 'You have entered a valid username and password';
       }else {
          $msg = 'Wrong username or password';
       }
@@ -98,6 +98,9 @@ h2{
        name = "password" placeholder = "password = 1234" required>
     <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
        name = "login">Login</button>
+
+	<button class = "btn btn-lg btn-primary btn-block" type = "submit" 
+       name = "register">Register</button>
  </form>
 		
  Click here to logout <a href = "logout.php" tite = "Logout">Logout.
