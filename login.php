@@ -6,6 +6,7 @@ body  {
     padding-top: 5%;
     padding-bottom: 5%;
     background-color: #008080;
+    background-image: "confirmed.jpg";
     background-size: relative;
     background-position: center;
     background-repeat: no-repeat;
@@ -107,7 +108,7 @@ h2{
     action = "register.php" method = "post">
     <button class = "btn btn-lg btn-primary btn-block" type= "submit" name="register">Register</button>
   </form>
-  
+
 		
 Click here to logout <a href = "logout.php" tite = "Logout">Logout.
  
