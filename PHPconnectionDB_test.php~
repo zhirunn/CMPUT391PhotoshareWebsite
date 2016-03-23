@@ -17,8 +17,11 @@ session_start();
         //            WHERE user_name = :username. AND password = :password.");
                     
         //$stid = oci_parse($conn, 'begin myproc(:username, :password); end;');
-        $userp = $_POST['username']; //-grabs the user inputted value for username. reference login_submit_test.php
-        $passp = $_POST['passwordd']; //-grabs the user inputted value for passwordd. reference login_submit_test.php
+        
+        $username = $_POST['username'];
+        $passwordd = $_POST['passwordd'];
+        //$userp = $_POST['username']; //-grabs the user inputted value for username. reference login_submit_test.php
+        //$passp = $_POST['passwordd']; //-grabs the user inputted value for passwordd. reference login_submit_test.php
         //$query = ("SELECT user_name, password FROM users WHERE user_name =\''.$userp.'\' AND password =\''.$passp.'\'");        
         $query = ("SELECT user_name, password FROM users WHERE user_name = :username AND password = :passwordd");
         //-^This doesn't work because I believe sql is taking the literal values of :username and :passwordd as its search parameters.
@@ -40,8 +43,8 @@ session_start();
         /*** bind the parameters ***/
         //oci_bind_by_name($stid, ":username", $user_name);
         //oci_bind_by_name($stid, ":passwordd", $password, 40);
-        oci_bind_by_name($stid, ":username", $user_name);
-        oci_bind_by_name($stid, ":passwordd", $password, 40);
+        oci_bind_by_name($stid, ":username", $username);
+        oci_bind_by_name($stid, ":passwordd", $passwordd, 40);
         
         //echo $userp;        
         
@@ -49,7 +52,8 @@ session_start();
         oci_execute($stid);
 
         /*** check for a result ***/
-        //$user_id = $stmt->fetchColumn();
+        //$user_name = $stid->fetchColumn();
+        $user_name = oci_fetch($stid);
         //print "$p2\n";   // prints 16
         
         /*** if we have no result then fail boat ***/
