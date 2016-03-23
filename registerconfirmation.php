@@ -23,7 +23,7 @@ include ("PHPconnectionDB.php");
           echo "<p>Sorry, that username is taken. Please go back and try again.</p>";
 
         }
-      else{
+     else{
         //$sqladduser = "INSERT INTO users VALUES (\".$user_name"',\'' ".$password"',\'' ".date(r)")";
         $sqladduser = 'INSERT INTO users VALUES(\".$user_name.\',\".$password.\',\'.date(r)\')';
         if ($sqladduser){
