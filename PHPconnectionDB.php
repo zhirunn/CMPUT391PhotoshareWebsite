@@ -1,8 +1,6 @@
 <?php
 function connect(){
-}
-echo "Connected successfully";
-?> 
+//echo "Connected successfully"; 
 	$conn = oci_connect('wong5', 'Justin15Wong');
 	if (!$conn) {
 		$e = oci_error();
