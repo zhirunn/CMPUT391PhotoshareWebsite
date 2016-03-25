@@ -12,7 +12,7 @@ session_start();
 	{
         $username = $_POST['username'];
         $passwordd = $_POST['passwordd'];
-        $query = ("SELECT user_name, password FROM users WHERE user_name = :username AND password = :password");					
+        $query = ("SELECT user_name, password FROM users WHERE user_name = :username AND password = :passwordd");					
         
         $stid = oci_parse($conn, $query);
         
@@ -25,6 +25,7 @@ session_start();
         if($user_name == false)
         {
                 echo 'Login Failed';
+                oci_close($conn);
         }
         else
         {
