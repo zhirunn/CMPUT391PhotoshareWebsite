@@ -2,6 +2,25 @@
 <head>
 <title>Ourwebsite.com/registerconfirm</title>
 </head>
+<style>
+  body {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-color: #008080;
+    background-size: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
+<html>
+   <form class = "main_menu return" role = "form"
+    action = "login.php" method = "post">
+    <button class = "btn btn-lg btn-primary btn-block" type= "submit" name="loginscreen">Return to Login Screen</button>
+  </form>
+
+</html>
+
+
 <?php
 include ("PHPconnectionDB.php");
 ?>
@@ -16,25 +35,43 @@ include ("PHPconnectionDB.php");
       $address = $_POST['address'];
       $phonenum = $_POST['phone'];
 
-      $conn=connect();
-      $sql="SELECT * FROM $users WHERE user_name='$user_name'";
-      $count=mysql_num_rows($result);
-      if ($count==1){
-          echo "<p>Sorry, that username is taken. Please go back and try again.</p>";
-
+      $conn=oci_connect("wong5", "Justin15Wong");
+      $sql='SELECT * FROM users WHERE user_name = :user_name)';
+      $stid = oci_parse($conn,$sql);
+      //oci_bind_by_name, use this shit
+      oci_bind_by_name($stid,":user_name",$user_name);
+      $res=oci_execute($stid);
+      $count = oci_num_rows($stid);
+      if ($count > 0){
+          $message = "That Username is taken please choose another";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<h1>FAILURE<h1>";
         }
      else{
         //$sqladduser = "INSERT INTO users VALUES (\".$user_name"',\'' ".$password"',\'' ".date(r)")";
-        $sqladduser = 'INSERT INTO users VALUES(\".$user_name.\',\".$password.\',\'.date(r)\')';
+        $datereg=date("d/M/Y");
+        $sqladduser = 'INSERT INTO users VALUES(:user_name,:password,:datereg)';
+        $stid = oci_parse($conn, $sqladduser);
+        oci_bind_by_name($stid, ":user_name", $user_name);
+        oci_bind_by_name($stid, ":password", $password);
+        oci_bind_by_name($stid, ":datereg", $datereg);
+        $res=oci_execute($stid);
         if ($sqladduser){
           echo "<h1>Your account is now registered!</h1>";
         }
         else{
           echo "<h1>FAILURE</h1>";
         }
-        $sqladdperson = 'INSERT INTO persons VALUES(\".$user_name.\',\".$first_name.\',\'.$last_name\',\'.$address\',\'.$email\',\'.$phonenum\')';
+        $sqladdperson = 'INSERT INTO persons VALUES(:user_name,:first_name,:last_name,:address,:email,:phonenum)';
+        $stid = oci_parse($conn, $sqladdperson);
+        oci_bind_by_name($stid, ":user_name", $user_name);
+        oci_bind_by_name($stid, ":first_name", $first_name);
+        oci_bind_by_name($stid, ":last_name", $last_name);
+        oci_bind_by_name($stid, ":address", $address);
+        oci_bind_by_name($stid, ":email", $email);
+        oci_bind_by_name($stid, ":phonenum", $phonenum);
+        $res=oci_execute($stid);
       }
       $conn=null;
-
     ?>
 </div>

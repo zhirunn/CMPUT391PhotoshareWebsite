@@ -22,7 +22,8 @@
     Address: <input type="text" name="address"/><br/>
     Phone Number: <input type="text" name="phone"/><br/>
     Username: <input type="text" name="user_name"/><br/>
-    Password: <input type"text" name="password"/><br/>
+    Password: <input type= PASSWORD name="password"/><br/>
+    Confirm Password: <input type= PASSWORD name = "passwordconfirm"/></br>
     <input type="submit" name="validate" value="Register Account"/>
     </form>
     <script>
@@ -59,9 +60,14 @@
             return false;
         }
         var password = document.forms["registrationForm"]["password"].value;
+        var confirmpassword = document.forms["registrationForm"]["confirmpassword"].value;
         if (password == null || password == "") {
             alert("Password must be filled out");
             return false;
+        }
+        if (confirmpassword != password){
+            alert("Passwords must match!")
+        }
         }
         
     }
