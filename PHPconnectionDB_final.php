@@ -25,6 +25,7 @@ session_start();
         if($user_name == false)
         {
                 echo 'Login Failed';
+                $conn.close();
         }
         else
         {
