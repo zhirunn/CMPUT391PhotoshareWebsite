@@ -6,6 +6,25 @@ session_start();
 <html>
 <head>
 <title>Upload | PhotShare</title>
+
+# Code for JQuery Datepicker from jqueryui.com
+<meta charset="utf-8">
+<title>jQuery UI Datepicker - Default functionality</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script>
+$(function() {
+    $( "#datepicker" ).datepicker();
+});
+</script>
+
+# Functionality based on advice from Hugh Craig.
+<script>
+function showHidden() { document.getElementByID('groupid').style.display = 'block'; }
+function hideHidden() { document.getElementByID('groupid').style.display = 'none'; }
+
 </head>
 
 <body>
@@ -13,31 +32,12 @@ session_start();
 <hr>
 <form action="upload.php" method="post">
 <fieldset>
-    <legend>Image Information</legend>
-    <div>
-        <label for="photo_id">Photo ID:</label>
-        <?php
-            $photo_id = mt_rand();
-            echo $photo_id;
-            $_POST["photo_id"] = $photo_id;
-        ?>
-        <br>
-    </div>
-    <div>
-        <label for="user">User:</label>
-        <?php
-
-        $user = $_SESSION['username'];
-        echo $user;
-        $_POST['user'] = $user;
-
-         ?>
-         <br>
-    </div>
+    <legend>Photo Information</legend>
     <div>Permissions: <br />
-        <input type="radio" name="permission" value="public" checked>Public<br>
-        <input type="radio" name="permission" value="private">Private<br>
-        <input type="radio" name="permission" value="specific group">Specific Group<br>
+        <input type="radio" name="permission" value="public" onclick="hideHidden();" checked>Public<br>
+        <input type="radio" name="permission" value="private" onclick="hideHidden();">Private<br>
+        <input type="radio" name="permission" value="specific group" onclick="showHidden();">Specific Group<br>
+
     </div>
     <div>
         <label for="subject">Subject:</label>
@@ -48,16 +48,22 @@ session_start();
         <input id="place" type="text" name="place" size="20" maxsize="">
     </div>
     <div>
-        <label for="timing">Timing:</label>
-        <input id="timing" type="text" name="timing" size="10" maxsize="8" value="DD/MM/YY">
+        <label for="datepicker">Date:</label> 
+
+        <input id="datepicker" type="text"
     </div>
     <div>
         <label for="description">Description:</label><br>
         <textarea id="description" type="text" name="description" rows=10 cols=70 maxsize="2048" value="Describe your photo..."></textarea>
     </div>
     <div>
-        <label for="imageupload">Photo(s) to include:</label><input id="imageupload" name="imageuploads[]" type="file" multiple/></br>
+        <label for="photoupload">Photo(s) to include:</label><input id="photoupload" name="photouploads[]" type="file" multiple/></br>
     </div>
+    <div>
+        <input type="submit" name="submit" value="Upload">
+    </div>
+</fieldset>
+</form>
 
 </body>
 </html>
