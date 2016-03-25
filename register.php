@@ -15,7 +15,7 @@
 <body>
     <h1>Create a New Account</h1>
     <form id ='register' action='registerconfirmation.php' method='post'
-    accept-charset='UTF-8' name='registrationForm' onsubmit="return validateForm()">
+    accept-charset='UTF-8' name='registrationForm' onsubmit="return validateForm();">
     First Name : <input type="text" name="first_name"/><br/>
     Last Name : <input type="text" name="last_name"/><br/>
     E-mail Address : <input type="text" name="email"/><br/>
@@ -67,8 +67,9 @@
         }
         if (confirmpassword != password){
             alert("Passwords must match!")
+            return false;
         }
-        }
+    
         
     }
     </script>
