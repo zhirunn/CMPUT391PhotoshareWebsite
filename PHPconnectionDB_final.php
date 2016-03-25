@@ -25,6 +25,7 @@ session_start();
         if($user_name == false)
         {
                 echo 'Login Failed';
+                oci_close($conn);
         }
         else
         {
@@ -40,4 +41,5 @@ session_start();
     }
 	
 ?>
+<!http://www.phpro.org/tutorials/Basic-Login-Authentication-with-PHP-and-MySQL.html>
 
