@@ -22,7 +22,6 @@
 
 
 <?php
-session_start();
 include ("PHPconnectionDB.php");
 ?>
 <div class = "container form-register">

@@ -29,8 +29,10 @@ session_start();
         }
         else
         {
-                $_SESSION["username"] = $user_name;
-                echo 'You are now logged in';
+                $_SESSION["username"] = $username;
+                header("Location: landing_page.php");
+                echo "You are now logged in $_SESSION[username]";
+                oci_close($conn);
         }
 
 

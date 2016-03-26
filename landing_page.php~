@@ -2,6 +2,7 @@
 	session_start();
 	$conn = oci_connect("wong5", "Justin15Wong");
 	$username = $_SESSION["username"];
+	//$username = 'B_Smith';
 	$query = ("SELECT first_name FROM persons, users WHERE persons.user_name = :username");
 	$fn = oci_parse($conn, $query);
    oci_bind_by_name($fn, ":username", $username);

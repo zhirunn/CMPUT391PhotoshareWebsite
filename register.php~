@@ -65,7 +65,7 @@
             return false;
         }
         var confirmpassword = document.forms["registrationForm"]["confirmpassword"].value;
-        if (confirmpassword != password || confirmpassword == ""){
+        if (confirmpassword !== password || confirmpassword == ""){
             alert("Passwords must match!")
             return false;
         }
