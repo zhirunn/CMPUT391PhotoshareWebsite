@@ -40,17 +40,28 @@ include ("PHPconnectionDB.php");
 
       $conn=oci_connect("wong5", "Justin15Wong");
       $sql = ("SELECT * FROM users WHERE user_name = :user_name");
+      $sql2 = ("SELECT * FROM persons WHERE email = :email");
       $stid = oci_parse($conn,$sql);
+      $stid2 = oci_parse($conn,$sql2);
       //oci_bind_by_name, use this shit
       oci_bind_by_name($stid,":user_name",$user_name);
+      oci_bind_by_name($stid2,":email",$email);
       //$res=oci_execute($stid);
       oci_execute($stid);
+      oci_execute($stid2);
       $count = oci_fetch($stid);
+      $count2 = oci_fetch($stid2);
       if ($count != false){
-          $message = "That Username is taken please choose another";
+          $message = "That Username is taken. Please choose another.";
           echo "<script type='text/javascript'>sweetAlert('$message');</script>";
           echo "<h1>FAILURE<h1>";
           echo "$count";
+        }
+      else if ($count2 != false){
+          $message = "That email is already being used. Please choose another.";
+          echo "<script type='text/javascript'>sweetAlert('$message');</script>";
+          echo "<h1>FAILURE<h1>";
+          echo "$count2";
         }
      else{
         //$sqladduser = "INSERT INTO users VALUES (\".$user_name"',\'' ".$password"',\'' ".date(r)")";
@@ -81,3 +92,5 @@ include ("PHPconnectionDB.php");
     ?>
 </div>
 <!http://blog.idojo.co/the-best-alternative-for-javascript-alert/>
+
+<!I've determined the bug over here. Email needs to be unique.>

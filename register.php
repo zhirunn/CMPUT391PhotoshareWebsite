@@ -19,14 +19,14 @@
     <h1>Create a New Account</h1>
     <form id ='register' action='registerconfirmation.php' method='post'
     accept-charset='UTF-8' name='registrationForm' onsubmit="return validateForm();">
-    First Name : <input type="text" name="first_name"/><br/>
-    Last Name : <input type="text" name="last_name"/><br/>
-    E-mail Address : <input type="text" name="email"/><br/>
-    Address: <input type="text" name="address"/><br/>
-    Phone Number: <input type="text" name="phone"/><br/>
-    Username: <input type="password" name="user_name"/><br/>
-    Password: <input type="password" name="password"/><br/>
-    Confirm Password: <input type="text" name = "passwordconfirm"/><br/>
+    First Name : <input type= "text" name="first_name"/><br/>
+    Last Name : <input type= "text" name="last_name"/><br/>
+    E-mail Address : <input type= "text" name="email"/><br/>
+    Address: <input type= "text" name="address"/><br/>
+    Phone Number: <input type= "text" name="phone"/><br/>
+    Username: <input type= "text" name="user_name"/><br/>
+    Password: <input type= PASSWORD name="password"/><br/>
+    Confirm Password: <input type= PASSWORD name = "passwordconfirm"/><br/>
     <input type="submit" name="validate" value="Register Account"/>
     </form>
     <script>
@@ -64,17 +64,13 @@
             return false;
         }
         var password = document.forms["registrationForm"]["password"].value;
+        var confirmpassword = document.forms["registrationForm"]["confirmpassword"].value;
+        if (password.value != confirmpassword.value) {
+            sweetAlert("Passwords must match!")
+            return false;
+        }
         if (password == null || password == "") {
             sweetAlert("Password must be filled out");
-            return false;
-        }
-        var confirmpassword = document.forms["registrationForm"]["confirmpassword"].value;
-        if (password != confirmpassword) {
-            sweetAlert("Passwords must match!")
-            return false;
-        }
-        if (password == confirmpassword) {
-            sweetAlert("Passwords must match!")
             return false;
         }
     }
@@ -86,7 +82,6 @@
 </html>
 
 <!http://blog.idojo.co/the-best-alternative-for-javascript-alert/>
-/***
-notes on validation
+
+<!notes on validation>
 <!http://www.the-art-of-web.com/javascript/validate-password/>
-***/
