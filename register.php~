@@ -24,9 +24,9 @@
     E-mail Address : <input type="text" name="email"/><br/>
     Address: <input type="text" name="address"/><br/>
     Phone Number: <input type="text" name="phone"/><br/>
-    Username: <input type="text" name="user_name"/><br/>
-    Password: <input type= PASSWORD name="password"/><br/>
-    Confirm Password: <input type= PASSWORD name = "passwordconfirm"/><br/>
+    Username: <input type="password" name="user_name"/><br/>
+    Password: <input type="password" name="password"/><br/>
+    Confirm Password: <input type="text" name = "passwordconfirm"/><br/>
     <input type="submit" name="validate" value="Register Account"/>
     </form>
     <script>
@@ -86,3 +86,7 @@
 </html>
 
 <!http://blog.idojo.co/the-best-alternative-for-javascript-alert/>
+/***
+notes on validation
+http://www.the-art-of-web.com/javascript/validate-password/
+***/
