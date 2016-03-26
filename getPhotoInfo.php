@@ -34,8 +34,8 @@ function hideHidden() { document.getElementByID('groupid').style.display = 'none
 <fieldset>
     <legend>Photo Information</legend>
     <div>Permissions: <br />
-        <input type="radio" name="permission" value="public" onclick="hideHidden();" checked>Public<br>
-        <input type="radio" name="permission" value="private" onclick="hideHidden();">Private<br>
+        <input type="radio" name="permission" value="private" onclick="hideHidden();" checked>Private<br>
+        <input type="radio" name="permission" value="public" onclick="hideHidden();" >Public<br>
         <input type="radio" name="permission" value="specific group" onclick="showHidden();">Specific Group<br>
 
     </div>
