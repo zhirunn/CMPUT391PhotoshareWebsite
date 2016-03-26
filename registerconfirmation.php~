@@ -1,6 +1,8 @@
 <html lang = "en">
 <head>
 <title>Ourwebsite.com/registerconfirm</title>
+<script src="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.css">
 </head>
 <style>
   body {
@@ -22,6 +24,7 @@
 
 
 <?php
+session_start();
 include ("PHPconnectionDB.php");
 ?>
 <div class = "container form-register">
@@ -36,33 +39,35 @@ include ("PHPconnectionDB.php");
       $phonenum = $_POST['phone'];
 
       $conn=oci_connect("wong5", "Justin15Wong");
-      $sql= ("SELECT * FROM users WHERE user_name = :user_name");
+      $sql = ("SELECT * FROM users WHERE user_name = :user_name");
       $stid = oci_parse($conn,$sql);
       //oci_bind_by_name, use this shit
       oci_bind_by_name($stid,":user_name",$user_name);
-      $res=oci_execute($stid);
-      $count = oci_num_rows($stid);
-      if ($count > 0){
+      //$res=oci_execute($stid);
+      oci_execute($stid);
+      $count = oci_fetch($stid);
+      if ($count != false){
           $message = "That Username is taken please choose another";
-          echo "<script type='text/javascript'>alert('$message');</script>";
+          echo "<script type='text/javascript'>sweetAlert('$message');</script>";
           echo "<h1>FAILURE<h1>";
+          echo "$count";
         }
      else{
         //$sqladduser = "INSERT INTO users VALUES (\".$user_name"',\'' ".$password"',\'' ".date(r)")";
-        $datereg=date("d/M/Y");
-        $sqladduser = 'INSERT INTO users VALUES(:user_name,:password,:datereg)';
+        $datereg = date("d/M/Y");
+        $sqladduser = ("INSERT INTO users VALUES (:user_name, :password, :datereg)");
         $stid = oci_parse($conn, $sqladduser);
         oci_bind_by_name($stid, ":user_name", $user_name);
         oci_bind_by_name($stid, ":password", $password);
         oci_bind_by_name($stid, ":datereg", $datereg);
-        $res=oci_execute($stid);
-        if ($sqladduser){
+        oci_execute($stid);
+        if ($sqladduser){        
           echo "<h1>Your account is now registered!</h1>";
         }
         else{
           echo "<h1>FAILURE</h1>";
         }
-        $sqladdperson = 'INSERT INTO persons VALUES(:user_name,:first_name,:last_name,:address,:email,:phonenum)';
+        $sqladdperson = ("INSERT INTO persons VALUES (:user_name, :first_name, :last_name, :address, :email, :phonenum)");
         $stid = oci_parse($conn, $sqladdperson);
         oci_bind_by_name($stid, ":user_name", $user_name);
         oci_bind_by_name($stid, ":first_name", $first_name);
@@ -70,8 +75,9 @@ include ("PHPconnectionDB.php");
         oci_bind_by_name($stid, ":address", $address);
         oci_bind_by_name($stid, ":email", $email);
         oci_bind_by_name($stid, ":phonenum", $phonenum);
-        $res=oci_execute($stid);
+        oci_execute($stid);
       }
-      $conn=null;
+      oci_close($conn);
     ?>
 </div>
+<!http://blog.idojo.co/the-best-alternative-for-javascript-alert/>

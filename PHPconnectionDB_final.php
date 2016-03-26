@@ -25,14 +25,14 @@ session_start();
         if($user_name == false)
         {
                 echo 'Login Failed';
-                oci_close($conn);
+                //oci_close($conn);
         }
         else
         {
                 $_SESSION["username"] = $username;
                 header("Location: landing_page.php");
-                echo "You are now logged in $_SESSION[username]";
-                oci_close($conn);
+                //echo "You are now logged in $_SESSION[username]";
+                //oci_close($conn);
         }
 
 
@@ -41,7 +41,7 @@ session_start();
     {
         $message = 'We are unable to process your request. Please try again later';
     }
-	
+oci_close($conn);
 ?>
 <!http://www.phpro.org/tutorials/Basic-Login-Authentication-with-PHP-and-MySQL.html>
 

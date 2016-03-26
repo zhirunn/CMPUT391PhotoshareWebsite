@@ -1,6 +1,9 @@
+<!This really should be named with a .html extension but......>
 <html lang = "en">
 <head>
 <title>Ourwebsite.com/register</title>
+<script src="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.css">
 </head>
 <style>
   body {
@@ -23,54 +26,57 @@
     Phone Number: <input type="text" name="phone"/><br/>
     Username: <input type="text" name="user_name"/><br/>
     Password: <input type= PASSWORD name="password"/><br/>
-    Confirm Password: <input type= PASSWORD name = "passwordconfirm"/></br>
+    Confirm Password: <input type= PASSWORD name = "passwordconfirm"/><br/>
     <input type="submit" name="validate" value="Register Account"/>
     </form>
     <script>
         //this validates the different account things
+        //this is in javascript
         function validateForm() {
         var first_name = document.forms["registrationForm"]["first_name"].value;
         if (first_name == null || first_name == "") {
-            alert("First Name must be filled out");
+            sweetAlert("First Name must be filled out");
             return false;
         }
         var last_name = document.forms["registrationForm"]["last_name"].value;
         if (last_name == null || last_name == "") {
-            alert("Last Name must be filled out");
+            sweetAlert("Last Name must be filled out");
             return false;
         }
         var email = document.forms["registrationForm"]["email"].value;
         if (email == null || email == "") {
-            alert("E-mail must be filled out");
+            sweetAlert("E-mail must be filled out");
             return false;
         }
         var address = document.forms["registrationForm"]["address"].value;
         if (address == null || address == "") {
-            alert("Address must be filled out");
+            sweetAlert("Address must be filled out");
             return false;
         }
         var phone = document.forms["registrationForm"]["phone"].value;
         if (phone == null || phone == "") {
-            alert("Phone Number must be filled out");
+            sweetAlert("Phone Number must be filled out");
             return false;
         }
         var user_name = document.forms["registrationForm"]["user_name"].value;
         if (user_name == null || user_name == "") {
-            alert("Username must be filled out");
+            sweetAlert("Username must be filled out");
             return false;
         }
         var password = document.forms["registrationForm"]["password"].value;
         if (password == null || password == "") {
-            alert("Password must be filled out");
+            sweetAlert("Password must be filled out");
             return false;
         }
         var confirmpassword = document.forms["registrationForm"]["confirmpassword"].value;
-        if (confirmpassword !== password || confirmpassword == ""){
-            alert("Passwords must match!")
+        if (password != confirmpassword) {
+            sweetAlert("Passwords must match!")
             return false;
         }
-    
-        
+        if (password == confirmpassword) {
+            sweetAlert("Passwords must match!")
+            return false;
+        }
     }
     </script>
 
@@ -79,3 +85,4 @@
 
 </html>
 
+<!http://blog.idojo.co/the-best-alternative-for-javascript-alert/>

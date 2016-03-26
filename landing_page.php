@@ -8,6 +8,7 @@
    oci_execute($fn);
 	$first_name = oci_fetch_row($fn);
 	echo "Hello $first_name[0]";
+   oci_close($conn);
  ?>
 <html lang = "en">
 <head>
