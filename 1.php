@@ -29,7 +29,7 @@ function readURL(input) {
 </style>
 </head>
 <body>
-<form method="post" action="upload.php"> <!enctype="multipart/form-data">
+<form method="post" action="upload.php">
   <p> Please Upload an Image: </p>
   <input type="file" name="photo" id="imgInp" onchange="readURL(this);" />
   <br/>  
