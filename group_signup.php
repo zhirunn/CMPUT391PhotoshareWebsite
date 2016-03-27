@@ -6,8 +6,6 @@
 </head>
 <style>
   body {
-    padding-top: 5%;
-    padding-bottom: 5%;
     background-color: #008080;
     background-size: relative;
     background-position: center;
@@ -15,16 +13,20 @@
 }</style>
 
 <body>
-    <h1>Create a New Account</h1>
-    <form id ='register' action='registerconfirmation.php' method='post'
-    accept-charset='UTF-8' name='registrationForm' onsubmit="return validateForm();">
-    First Name : <input type="text" name="first_name"/><br/>
-    Last Name : <input type="text" name="last_name"/><br/>
-    E-mail Address : <input type="text" name="email"/><br/>
-    Address: <input type="text" name="address"/><br/>
-    Phone Number: <input type="text" name="phone"/><br/>
-    Username: <input type="text" name="user_name"/><br/>
-    Password: <input type= PASSWORD name="password"/><br/>
-    Confirm Password: <input type= PASSWORD name = "passwordconfirm"/></br>
-    <input type="submit" name="validate" value="Register Account"/>
+    <h1>Create a New Group</h1>
+    <form id ='register' action='group_registration_confirmation.php' method='post'
+    accept-charset='UTF-8' name='groupRegistrationForm' onsubmit="return validateGroupForm();">
+    Group Name : <input type="text" name="group_name"/><br/>
+    <input type="submit" name="validate" value="Register Group"/>
     </form>
+    <script>
+        //this validates the different account things
+        //this is in javascript
+        function validateForm() {
+        var group_name = document.forms["registrationForm"]["group_name"].value;
+        if (group_name == null || group_name == "") {
+            sweetAlert("Group Name must be filled out");
+            return false;
+        }
+    }
+    </script>

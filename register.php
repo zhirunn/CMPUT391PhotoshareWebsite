@@ -7,8 +7,6 @@
 </head>
 <style>
   body {
-    padding-top: 5%;
-    padding-bottom: 5%;
     background-color: #008080;
     background-size: relative;
     background-position: center;
