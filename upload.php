@@ -31,7 +31,7 @@ session_start();
 	// Create a photo id for each photo in photouploads[].
 	// Check if they don't already exist in the database and if they don't, use it.
 	// Create a thumbnail for each photo and upload each image to the server.
-	$i = 1;
+
 	foreach ($_FILES['photouploads']['tmp_name'] as $key => $tmp_name) {
 		
 		$photo_id = mt_rand();
@@ -45,22 +45,25 @@ session_start();
 
 		$thumbnail = imagecreatetruecolor($newwidth, $newheight);
 
-		$photoinfo = pathinfo("tmp_name");
+		$photoinfo = pathinfo("$tmp_name");
 
-		if ($photoinfo['extension'] == 'jpeg') {
+		$extensions = array("jpeg","jpg","png");
+
+
+		/***if ($photoinfo['extension'] == 'jpeg') {
 			$photo = imagecreatefromjpeg($tmp_name);
 		} else if ($photoinfo['extension'] == 'jpg') {
 			$photo = imagecreatefromjpeg($tmp_name);
-		} else {
+		}/*** else {
 			$photo = imagecreatefromgif($tmp_name);
-		}
+		}***/
 
 		imagecopyresized($thumbnail, $photo, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 
 		$photo = base64_encode($photo);
 		$thumbnail = base64_encode($thumbnail);
 
-		$insertquery = "INSERT INTO images VALUES (':photo_id', ':user', ':permission', ':subject', ':place', ':timing', ':description', :thumbnail, :photo)";
+		$insertquery = "INSERT INTO images VALUES (:photo_id, :user, :permission, :subject, :place, :timing, :description, :thumbnail, :photo)";
 		$stid1 = oci_parse($conn, $insertquery);
         oci_bind_by_name($stid1, ":photo_id", $photo_id);
         oci_bind_by_name($stid1, ":user", $user);
