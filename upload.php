@@ -20,7 +20,7 @@ session_start();
 	} else if($permission == "private") {
 		$permission = 2;
 	} else {
-		$permission = $permission
+		$permission = $permission;
 	}
 
 	$subject = $_POST['subject'];
@@ -55,7 +55,7 @@ session_start();
 			$photo = imagecreatefromgif($tmp_name);
 		}
 
-		imagecopyresized($thumb, $photo, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+		imagecopyresized($thumbnail, $photo, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 
 		$photo = base64_encode($photo);
 		$thumbnail = base64_encode($thumbnail);

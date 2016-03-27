@@ -7,7 +7,7 @@ session_start();
 <head>
 <title>Upload | PhotShare</title>
 
-# Code for JQuery Datepicker from jqueryui.com
+<! Code for JQuery Datepicker from jqueryui.com>
 <meta charset="utf-8">
 <title>jQuery UI Datepicker - Default functionality</title>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -20,17 +20,17 @@ $(function() {
 });
 </script>
 
-# Functionality based on advice from Hugh Craig.
+<! Functionality based on advice from Hugh Craig.>
 <script>
 function showHidden() { document.getElementByID('groupid').style.display = 'block'; }
 function hideHidden() { document.getElementByID('groupid').style.display = 'none'; }
-
+</script>
 </head>
 
 <body>
 <h1>Upload</h1>
 <hr>
-<form action="upload.php" method="post">
+<form action="upload.php" enctype="multipart/form-data" method="post">
 <fieldset>
     <legend>Photo Information</legend>
     <div>Permissions: <br />
@@ -50,7 +50,7 @@ function hideHidden() { document.getElementByID('groupid').style.display = 'none
     <div>
         <label for="datepicker">Date:</label> 
 
-        <input id="datepicker" type="text"
+        <input id="datepicker" type="text">
     </div>
     <div>
         <label for="description">Description:</label><br>
@@ -67,3 +67,5 @@ function hideHidden() { document.getElementByID('groupid').style.display = 'none
 
 </body>
 </html>
+
+<! http://techstream.org/Web-Development/PHP/Single-File-Upload-With-PHP>
