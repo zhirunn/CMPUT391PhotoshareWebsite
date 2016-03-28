@@ -11,7 +11,7 @@ session_start();
 
 	$conn=oci_connect("wong5", "Justin15Wong");
 
-	$user = $_SESSION['user_name'];
+	$username = $_SESSION['user_name'];
 	$permission = $_POST['permission'];
 
 	// Set the groupid appropriately
@@ -91,10 +91,10 @@ session_start();
 		$thumbnailblob = oci_new_descriptor($conn, OCI_D_LOB);
 		$photoblob = oci_new_descriptor($conn, OCI_D_LOB);
 
-		$insertquery = "INSERT INTO images VALUES (:photo_id, :user, :permission, :subject, :place, :timing, :description, empty_blob(), empty_blob()) returning thumbnail, photo, into :thumbnail, :photo";
+		$insertquery = "INSERT INTO images VALUES (:photo_id, :username, :permission, :subject, :place, :timing, :description, empty_blob(), empty_blob() ) RETURNING thumbnail, photo INTO :thumbnail, :photo";
 		$stid1 = oci_parse($conn, $insertquery);
         oci_bind_by_name($stid1, ":photo_id", $photo_id);
-        oci_bind_by_name($stid1, ":user", $user);
+        oci_bind_by_name($stid1, ":username", $username);
         oci_bind_by_name($stid1, ":permission", $permission);
         oci_bind_by_name($stid1, ":subject", $subject);
         oci_bind_by_name($stid1, ":place", $place);
