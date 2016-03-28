@@ -26,6 +26,8 @@ session_start();
 	$subject = $_POST['subject'];
 	$place = $_POST['place'];
 	$timing = $_POST['datepicker'];
+	$time = strtotime($timing);	
+	$timing = date("d/M/Y",$time);
 	$description = $_POST['description'];
 
 	// Create a photo id for each photo in photouploads[].

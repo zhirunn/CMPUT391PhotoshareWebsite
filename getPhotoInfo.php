@@ -49,8 +49,14 @@ function hideHidden() { document.getElementByID('groupid').style.display = 'none
     </div>
     <div>
         <label for="datepicker">Date:</label> 
-
-        <input id="datepicker" type="text">
+        <script>
+        var $datepicker = $('#datepicker');
+        $datepicker.datepicker({
+        dateFormat: 'dd-mm-yy'
+        }).val();
+        $datepicker.datepicker('setDate', new Date());
+        </script>
+        <input id="datepicker" name="datepicker" type="text">
     </div>
     <div>
         <label for="description">Description:</label><br>
