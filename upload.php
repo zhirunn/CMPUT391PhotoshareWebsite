@@ -70,13 +70,15 @@ session_start();
       imagejpeg($photo);
       $contentsphoto =  ob_get_contents();
       ob_end_clean();
-		$photo = base64_encode($contentsphoto);
+		//$photo = base64_encode($contentsphoto);
+		$photo = $contentsphoto;
 
       ob_start();
       imagejpeg($thumbnail);
       $contentsthumbnail =  ob_get_contents();
       ob_end_clean();
-		$thumbnail = base64_encode($contentsthumbnail);
+		//$thumbnail = base64_encode($contentsthumbnail);
+		$thumbnail = $contentsthumbnail;
 
 		$thumbnailblob = oci_new_descriptor($conn, OCI_D_LOB);
 		$photoblob = oci_new_descriptor($conn, OCI_D_LOB);
