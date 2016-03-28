@@ -92,7 +92,13 @@ session_start();
         oci_bind_by_name($stid1, ":description", $description);
         oci_bind_by_name($stid1, ":thumbnail", $thumbnailblob, -1, OCI_B_BLOB);
         oci_bind_by_name($stid1, ":photo", $photoblob, -1, OCI_B_BLOB);
-        oci_execute($stid1);
+        oci_execute($stid1, OCI_DEFAULT);
+        
+        if (($thumbnailblob->save($thumbnail)) && ($photoblob->save($photo))) {
+        oci_commit($conn);
+        } else {
+        oci_rollback($conn);
+        }
 
 }
 	oci_close($conn);

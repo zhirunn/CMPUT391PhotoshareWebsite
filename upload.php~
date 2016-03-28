@@ -2,7 +2,6 @@
 session_start();
 ?>
 
-<!doctype html>
 <html>
 <body>
 
@@ -14,7 +13,6 @@ session_start();
 	$username = $_SESSION['user_name'];
 	$permission = $_POST['permission'];
 
-	// Set the groupid appropriately
 	if ($permission == "public") {
 		$permission = 1;
 	} else if($permission == "private") {
@@ -29,10 +27,6 @@ session_start();
 	$time = strtotime($timing);	
 	$timing = date("d/M/Y",$time);
 	$description = $_POST['description'];
-
-	// Create a photo id for each photo in photouploads[].
-	// Check if they don't already exist in the database and if they don't, use it.
-	// Create a thumbnail for each photo and upload each image to the server.
 
 	foreach ($_FILES['photouploads']['tmp_name'] as $key => $tmp_name) {
 
@@ -53,7 +47,6 @@ session_start();
 	    $errors[]='File size must be less tham 5 MB';
     }	
 		
-		// Create a thumbnail for each photo.
 		$percent = 0.5;
 		list($width, $height) = getimagesize($tmp_name);
 		$newwidth = $width * $percent;
@@ -99,7 +92,13 @@ session_start();
         oci_bind_by_name($stid1, ":description", $description);
         oci_bind_by_name($stid1, ":thumbnail", $thumbnailblob, -1, OCI_B_BLOB);
         oci_bind_by_name($stid1, ":photo", $photoblob, -1, OCI_B_BLOB);
-        oci_execute($stid1);
+        oci_execute($stid1, OCI_DEFAULT);
+        
+        if (($thumbnailblob->save($thumbnail)) && ($photoblob->save($photo))) {
+        oci_commit($conn);
+        } else {
+        oci_rollback($conn);
+        }
 
 }
 	oci_close($conn);
