@@ -4,8 +4,8 @@
 	$username = $_SESSION["username"];
 	$query = ("SELECT first_name FROM persons, users WHERE persons.user_name = :username");
 	$fn = oci_parse($conn, $query);
-   oci_bind_by_name($fn, ":username", $username);
-   oci_execute($fn);
+  oci_bind_by_name($fn, ":username", $username);
+  oci_execute($fn);
 	$first_name = oci_fetch_row($fn);
 	echo "<h1>Hello $first_name[0]</h1>";
   oci_close($conn);
@@ -46,12 +46,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="http://consort.cs.ualberta.ca/~preyansh/image_gallery.html">Gallery</a></li>
+        <li><a href="http://consort.cs.ualberta.ca/~gd1/image_gallery.html">Gallery</a></li>
         <li><a href="#">My Pictures</a></li>
         <li><a href="#">Upload Photo</a></li>
-        <li><a href="http://consort.cs.ualberta.ca/~preyansh/group_homepage.php">Groups</a></li>
+        <li><a href="http://consort.cs.ualberta.ca/~gd1/group_homepage.php">Groups</a></li>
         <li><a href="#">Help</a></li>
-        <li><a href="http://consort.cs.ualberta.ca/~preyansh/login_submit_final.php">Logout</a></li>
+        <li><a href="http://consort.cs.ualberta.ca/~gd1/login_submit_final.php">Logout</a></li>
         <li role="separator" class="divider"></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">

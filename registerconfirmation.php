@@ -15,10 +15,6 @@
   }
 </style>
 <html>
-   <form class = "main_menu return" role = "form"
-    action = "login.php" method = "post">
-    <button class = "btn btn-lg btn-primary btn-block" type= "submit" name="loginscreen">Return to Login Screen</button>
-  </form>
 
 </html>
 
@@ -89,6 +85,8 @@ include ("PHPconnectionDB.php");
         oci_execute($stid);
       }
       oci_close($conn);
+
+      header("Location: landing_page.php");
     ?>
 </div>
 <!http://blog.idojo.co/the-best-alternative-for-javascript-alert/>
