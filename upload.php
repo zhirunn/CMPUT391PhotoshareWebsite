@@ -2,7 +2,6 @@
 session_start();
 ?>
 
-<!doctype html>
 <html>
 <body>
 
@@ -14,7 +13,6 @@ session_start();
 	$username = $_SESSION['user_name'];
 	$permission = $_POST['permission'];
 
-	// Set the groupid appropriately
 	if ($permission == "public") {
 		$permission = 1;
 	} else if($permission == "private") {
@@ -30,10 +28,6 @@ session_start();
 	$timing = date("d/M/Y",$time);
 	$description = $_POST['description'];
 
-	// Create a photo id for each photo in photouploads[].
-	// Check if they don't already exist in the database and if they don't, use it.
-	// Create a thumbnail for each photo and upload each image to the server.
-
 	foreach ($_FILES['photouploads']['tmp_name'] as $key => $tmp_name) {
 
     $photo_id = mt_rand();
@@ -42,19 +36,17 @@ session_start();
     $file_tmp =$_FILES['photouploads']['tmp_name'][$key];
     $file_type=$_FILES['photouploads']['type'][$key];
 		
-    $extensions = array("jpeg","jpg","png");
-		
-    $file_ext=explode('.',$_FILES['image']['name'][$key])	;
+    $extensions = array("jpeg","jpg","gif");
+    $file_ext=explode('.',$_FILES['photouploads']['name'][$key])	;
     $file_ext=end($file_ext);  
-    $file_ext=strtolower(end(explode('.',$_FILES['image']['name'][$key])));  
+    $file_ext=strtolower(end(explode('.',$_FILES['photouploads']['name'][$key])));  
     if(in_array($file_ext,$extensions ) === false){
     	$errors[]="extension not allowed";
     }
-    if($_FILES['image']['size'][$key] > 5242880){
+    if($_FILES['photouploads']['size'][$key] > 5242880){
 	    $errors[]='File size must be less tham 5 MB';
     }	
 		
-		// Create a thumbnail for each photo.
 		$percent = 0.5;
 		list($width, $height) = getimagesize($tmp_name);
 		$newwidth = $width * $percent;
@@ -62,18 +54,15 @@ session_start();
 
 		$thumbnail = imagecreatetruecolor($newwidth, $newheight);
 
-		$photoinfo = pathinfo("$tmp_name");
-
-      $photo = imagecreatefromjpeg($tmp_name);
-
-
-		if ($photoinfo['extension'] == 'jpeg') {
-			$photo = imagecreatefromjpeg($tmp_name);
-		} else {//($photoinfo['extension'] == 'jpg') {
-			$photo = imagecreatefromjpeg($tmp_name);
-		} /***else {
-			$photo = imagecreatefromgif($tmp_name);
-		}***/
+      if ($file_ext == 'jpeg') {
+      	$photo = imagecreatefromjpeg($tmp_name);
+      }
+      else if ($file_ext == 'jpg') {
+      	$photo = imagecreatefromjpeg($tmp_name);      
+      }
+      else if ($file_ext == 'gif') {
+      	$photo = imagecreatefromgif($tmp_name);      
+      }
 
 		imagecopyresized($thumbnail, $photo, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 
@@ -82,7 +71,6 @@ session_start();
       $contentsphoto =  ob_get_contents();
       ob_end_clean();
 		$photo = base64_encode($contentsphoto);
-		/***$photo = base64_decode($photo => blob); ***/
 		
       ob_start();
       imagejpeg($thumbnail);
@@ -105,12 +93,6 @@ session_start();
         oci_bind_by_name($stid1, ":thumbnail", $thumbnailblob, -1, OCI_B_BLOB);
         oci_bind_by_name($stid1, ":photo", $photoblob, -1, OCI_B_BLOB);
         oci_execute($stid1);
-
-		/***if($thumbnailblob->save($thumbnail) && $photoblob->save($photo)) {
-			oci_commit($conn);		
-		} else {
-			oci_rollback($conn);		
-		}***/
 
 }
 	oci_close($conn);
