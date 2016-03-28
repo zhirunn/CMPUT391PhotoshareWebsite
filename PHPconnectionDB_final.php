@@ -24,15 +24,15 @@ session_start();
         
         if($user_name == false)
         {
-                echo 'Login Failed';
-                //oci_close($conn);
+            $_SESSION['errors']['error5301'] = 1;
+            session_write_close();
+            header("Location: login_submit_final.php");
+
         }
         else
         {
-                $_SESSION["username"] = $username;
-                header("Location: landing_page.php");
-                //echo "You are now logged in $_SESSION[username]";
-                //oci_close($conn);
+            $_SESSION["username"] = $username;
+            header("Location: landing_page.php");
         }
 
 
