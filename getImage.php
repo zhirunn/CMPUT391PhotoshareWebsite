@@ -1,10 +1,11 @@
 <?php
 
   $id = $_GET['id'];
-  // do some validation here to ensure id is safe
+  //$type = $_GET['type'];
+  $type = 'photo';
 
   $conn = oci_connect('wong5', 'Justin15Wong');
-  $query = "SELECT photo FROM images WHERE subject = bob";
+  $query = "SELECT photo FROM images WHERE subject = 'bob'";
   
   $stid = oci_parse($conn, $query);
   
@@ -13,10 +14,12 @@
   
   oci_execute($stid);
   
-  $row = oci_fetch($stid);
+  $row = oci_fetch_array($stid);
+  $type = strtoupper($type);
+  $result = $row[$type]->load();
   
   header("Content-type: image/jpeg");
-  echo $row;
+  echo $result;
   
   oci_close($conn);
 ?>
