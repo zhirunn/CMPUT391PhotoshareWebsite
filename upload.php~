@@ -65,7 +65,7 @@ session_start();
       $photo = imagecreatefromjpeg($tmp_name);
 
 
-		/***if ($photoinfo['extension'] == 'jpeg') {
+		if ($photoinfo['extension'] == 'jpeg') {
 			$photo = imagecreatefromjpeg($tmp_name);
 		} else {//($photoinfo['extension'] == 'jpg') {
 			$photo = imagecreatefromjpeg($tmp_name);
@@ -87,8 +87,11 @@ session_start();
       $contentsthumbnail =  ob_get_contents();
       ob_end_clean();
 		$thumbnail = base64_encode($contentsthumbnail);
+		
+		$thumbnailblob = oci_new_descriptor($conn, OCI_D_LOB);
+		$photoblob = oci_new_descriptor($conn, OCI_D_LOB);
 
-		$insertquery = "INSERT INTO images VALUES (:photo_id, :user, :permission, :subject, :place, :timing, :description, :thumbnail, :photo)";
+		$insertquery = "INSERT INTO images VALUES (:photo_id, :user, :permission, :subject, :place, :timing, :description, empty_blob(), empty_blob()) returning thumbnail, photo, into :thumbnail, :photo";
 		$stid1 = oci_parse($conn, $insertquery);
         oci_bind_by_name($stid1, ":photo_id", $photo_id);
         oci_bind_by_name($stid1, ":user", $user);
@@ -97,9 +100,15 @@ session_start();
         oci_bind_by_name($stid1, ":place", $place);
         oci_bind_by_name($stid1, ":timing", $timing);
         oci_bind_by_name($stid1, ":description", $description);
-        oci_bind_by_name($stid1, ":thumbnail", $thumbnail, -1, OCI_B_BLOB);
-        oci_bind_by_name($stid1, ":photo", $photo, -1, OCI_B_BLOB);
-        oci_execute($stid1, OCI_DEFAULT);
+        oci_bind_by_name($stid1, ":thumbnail", $thumbnailblob, -1, OCI_B_BLOB);
+        oci_bind_by_name($stid1, ":photo", $photoblob, -1, OCI_B_BLOB);
+        oci_execute($stid1);
+
+		/***if($thumbnailblob->save($thumbnail) && $photoblob->save($photo)) {
+			oci_commit($conn);		
+		} else {
+			oci_rollback($conn);		
+		}***/
 
 }
 	oci_close($conn);
