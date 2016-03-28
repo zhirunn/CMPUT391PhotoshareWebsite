@@ -90,7 +90,7 @@ h2{
 <div class = "container">
 
  <form class = "form-signin" role = "form" 
-    action = "PHPexample3.php" method = "post">
+    action = "landing_page.php" method = "post">
     <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
     <input type = "text" class = "form-control" 
        name = "username" placeholder = "username = user" 

@@ -51,6 +51,7 @@
         <li><a href="#">Upload Photo</a></li>
         <li><a href="http://consort.cs.ualberta.ca/~preyansh/group_homepage.php">Groups</a></li>
         <li><a href="#">Help</a></li>
+        <li><a href="http://consort.cs.ualberta.ca/~preyansh/login_submit_final.php">Logout</a></li>
         <li role="separator" class="divider"></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
