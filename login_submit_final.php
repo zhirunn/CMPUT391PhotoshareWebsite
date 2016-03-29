@@ -23,12 +23,6 @@ session_start();
 	<script src="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.css">
 
-	<?php
-	if(isset($_SESSION['errors']['error5301']) && $_SESSION['errors']['error5301'] == 1) { ?>
-		<script>
-		sweetAlert("Username/password not correct!");
-		</script>
-	<?php }?>
 
 </head>
 
@@ -38,14 +32,14 @@ session_start();
 			<h2 class="form-signin-heading">Please sign in</h2>
 			<div class="form-group">
 				<label for="username" class="sr-only">Username</label>
-				<input type="text" class="form-control" id="username" value="" maxlength="40" placeholder="Enter username">
+				<input type="text" class="form-control" id="username" name="username" value="" maxlength="40" placeholder="Enter username">
 			</div>
 			<div class="form-group">
 				<label for="passwordd" class="sr-only">Password</label>
-				<input type="text" class="form-control" id="passwordd" value="" maxlength="40" placeholder="Password">
+				<input type="text" class="form-control" id="passwordd" name="passwordd" value="" maxlength="40" placeholder="Password">
 			</div>
 			<div>
-				<button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+				<input type="submit" class="btn btn-lg btn-primary btn-block" value="Login"/>
 			</div>
 		</form>
 
@@ -60,10 +54,6 @@ session_start();
 		</div>
 	</div>
 
-	<?php
-	if(isset($_SESSION['errors'])){
-    	unset($_SESSION['errors']);
-	} ?>
 
 </body>
 </html>

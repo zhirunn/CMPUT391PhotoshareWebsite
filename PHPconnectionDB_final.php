@@ -27,7 +27,6 @@ session_start();
             $_SESSION['errors']['error5301'] = 1;
             session_write_close();
             header("Location: login_submit_final.php");
-
         }
         else
         {
