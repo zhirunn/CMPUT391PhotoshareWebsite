@@ -24,9 +24,11 @@ session_start();
         
         if($user_name == false)
         {
-            $_SESSION['errors']['error5301'] = 1;
-            session_write_close();
-            header("Location: login_submit_final.php");
+            //$_SESSION['errors']['error5301'] = 1;
+            //session_write_close();
+            $message = "Username Error";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            header("Location: login_submit_final.php");    
 
         }
         else

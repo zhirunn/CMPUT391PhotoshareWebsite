@@ -35,14 +35,14 @@ session_start();
 <body>
 	<div class="container">
 		<form action="PHPconnectionDB_final.php" method="post" class="form-signin">
-			<h2 class="form-signin-heading">Please sign in</h2>
+			<h2 class="form-signin-heading">Photoshare App</h2>
 			<div class="form-group">
 				<label for="username" class="sr-only">Username</label>
 				<input type="text" class="form-control" id="username" value="" maxlength="40" placeholder="Enter username">
 			</div>
 			<div class="form-group">
 				<label for="passwordd" class="sr-only">Password</label>
-				<input type="text" class="form-control" id="passwordd" value="" maxlength="40" placeholder="Password">
+				<input type="password" class="form-control" id="passwordd" value="" maxlength="40" placeholder="Password">
 			</div>
 			<div>
 				<button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
@@ -63,7 +63,7 @@ session_start();
 	<?php
 	if(isset($_SESSION['errors'])){
     	unset($_SESSION['errors']);
-	} ?>
+	}?>
 
 </body>
 </html>
