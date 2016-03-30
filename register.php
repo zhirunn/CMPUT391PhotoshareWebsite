@@ -62,13 +62,13 @@
             return false;
         }
         var password = document.forms["registrationForm"]["password"].value;
-        var confirmpassword = document.forms["registrationForm"]["confirmpassword"].value;
-        if (password.value != confirmpassword.value) {
-            sweetAlert("Passwords must match!")
-            return false;
-        }
         if (password == null || password == "") {
             sweetAlert("Password must be filled out");
+            return false;
+        }
+        var confirmpassword = document.forms["registrationForm"]["confirmpassword"].value;
+        if (password != confirmpassword) {
+            sweetAlert("Passwords must match!")
             return false;
         }
     }
