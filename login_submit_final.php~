@@ -25,4 +25,12 @@ session_start();
 </form>
 </body>
 </html>
+<style>
+  body {
+    background-color: #008080;
+    background-size: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
 <!http://www.phpro.org/tutorials/Basic-Login-Authentication-with-PHP-and-MySQL.html>

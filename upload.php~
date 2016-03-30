@@ -10,7 +10,7 @@ session_start();
 
 	$conn=oci_connect("gd1", "N1o2t3h4i5");
 
-	$username = $_SESSION['username'];
+	$username = $_SESSION['user_name'];
 	$permission = $_POST['permission'];
 
 	if ($permission == "public") {
