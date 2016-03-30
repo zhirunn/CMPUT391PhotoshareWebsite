@@ -13,6 +13,7 @@ echo "<table>";
 
 while($row = oci_fetch_row($stid)) { 
 echo "<tr><td>" . $row[1] . "</td><td>" . $row[3] . "</td></tr>";
+echo "<tr><td>" . $row[1] . "</td><td>" . $row[3] . "</td></tr>";
 //echo "<tr><td>" . $row['owner_name'] . "</td><td>" . $row['subject'] . "</td></tr>";
 }
 
