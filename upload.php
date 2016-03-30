@@ -1,3 +1,7 @@
+<html>
+  <div class="page-header">
+  <h2>PhotoInsanity App</h2>
+</div>
 <?php
 session_start();
 ?>
