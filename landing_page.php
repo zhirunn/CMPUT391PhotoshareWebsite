@@ -1,3 +1,8 @@
+<html>
+  <div class="page-header">
+  <h2>PhotoInsanity App</h2>
+</div>
+</html>
 <?php 
 	session_start();
 	$conn = oci_connect("wong5", "Justin15Wong");
@@ -46,12 +51,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="http://consort.cs.ualberta.ca/~gd1/image_gallery.html">Gallery</a></li>
-        <li><a href="#">My Pictures</a></li>
-        <li><a href="#">Upload Photo</a></li>
-        <li><a href="http://consort.cs.ualberta.ca/~gd1/group_homepage.php">Groups</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="image_gallery.html">My Pictures</a></li>
+        <li><a href="getPhotoInfo.php">Upload Photo</a></li>
+        <li><a href="group_homepage.php">Groups</a></li>
         <li><a href="#">Help</a></li>
-        <li><a href="http://consort.cs.ualberta.ca/~gd1/login_submit_final.php">Logout</a></li>
+        <li><a href="search.php">Search</a></li>
+        <li><a href="logout.php">Logout</a></li>
         <li role="separator" class="divider"></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
