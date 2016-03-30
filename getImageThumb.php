@@ -1,11 +1,11 @@
 <?php
 
-  $id = $_GET["id"];
+  $id = $_GET['id'];
   //$type = $_GET['type'];
-  $type = 'photo';
+  $type = 'thumbnail';
 
   $conn = oci_connect('wong5', 'Justin15Wong');
-  $query = "SELECT photo FROM images WHERE subject = :id";
+  $query = "SELECT thumbnail FROM images WHERE subject = :id";
   
   $stid = oci_parse($conn, $query);
   

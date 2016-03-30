@@ -54,7 +54,6 @@ session_start();
 
 		$thumbnail = imagecreatetruecolor($newwidth, $newheight);
 
-/***
       if ($file_ext == 'jpeg') {
       	$photo = imagecreatefromjpeg($tmp_name);
       }
@@ -64,23 +63,16 @@ session_start();
       else if ($file_ext == 'gif') {
       	$photo = imagecreatefromgif($tmp_name);      
       }
-***/
 
-      $photo = addslashes($_FILES['photouploads']['tmp_name'][$key]);
-      $photo = file_get_contents($photo);
+		imagecopyresized($thumbnail, $photo, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 
-
-
-
-		//imagecopyresized($thumbnail, $photo, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-/***
       ob_start();
       imagejpeg($photo);
       $contentsphoto =  ob_get_contents();
       ob_end_clean();
 		//$photo = base64_encode($contentsphoto);
 		$photo = $contentsphoto;
-***/
+
       ob_start();
       imagejpeg($thumbnail);
       $contentsthumbnail =  ob_get_contents();

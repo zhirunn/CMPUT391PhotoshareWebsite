@@ -1,15 +1,15 @@
 <?php
 
-  $id = $_GET['id'];
+  $id = $_GET["id"];
   //$type = $_GET['type'];
   $type = 'photo';
 
   $conn = oci_connect('wong5', 'Justin15Wong');
-  $query = "SELECT photo FROM images WHERE subject = 'bob'";
+  $query = "SELECT photo FROM images WHERE subject = :id";
   
   $stid = oci_parse($conn, $query);
   
-  //oci_bind_by_name($stid, ":id", $id);
+  oci_bind_by_name($stid, ":id", $id);
   
   
   oci_execute($stid);
