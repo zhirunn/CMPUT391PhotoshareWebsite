@@ -6,9 +6,9 @@ session_start();
 <body>
 
 <?php
-	include ("PHPconnectionDB.php");
+	include ("PHPconnectionDB_final.php");
 	$conn=oci_connect("gd1", "N1o2t3h4i5");
-	$username = $_SESSION['user_name'];
+	$username = $_SESSION['username'];
 	$permission = $_POST['permission'];
 	if ($permission == "public") {
 		$permission = 1;

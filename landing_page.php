@@ -9,8 +9,8 @@
 	$username = $_SESSION["username"];
 	$query = ("SELECT first_name FROM persons, users WHERE persons.user_name = :username");
 	$fn = oci_parse($conn, $query);
-  oci_bind_by_name($fn, ":username", $username);
-  oci_execute($fn);
+   oci_bind_by_name($fn, ":username", $username);
+   oci_execute($fn);
 	$first_name = oci_fetch_row($fn);
 	echo "<h1>Hello $first_name[0]</h1>";
   oci_close($conn);
@@ -57,6 +57,15 @@
         <li><a href="group_homepage.php">Groups</a></li>
         <li><a href="#">Help</a></li>
         <li><a href="search.php">Search</a></li>
+        <td>
+        <?php 
+        session_start();
+        if($_SESSION["username"] == 'admin'): ?>
+        <li><a href="admin_data_analysis.html">Admin Stuff</a></li>
+        <?php else: ?> 
+        sweetAlert("User is not Admin");
+        <?php endif; ?>
+        </td>
         <li><a href="logout.php">Logout</a></li>
         <li role="separator" class="divider"></li>
       </ul>
