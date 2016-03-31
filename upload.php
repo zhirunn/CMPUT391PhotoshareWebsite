@@ -11,7 +11,7 @@ session_start();
 <body>
 
 <?php
-	include ("PHPconnectionDB.php");
+	include ("PHPconnectionDB_final.php");
 
 	$conn=oci_connect("wong5", "Justin15Wong");
 

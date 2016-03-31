@@ -5,11 +5,12 @@
 </html>
 <?php 
 	session_start();
-  require once 'header.php';
+  $search_result = $_SESSION['final_result'];
+  required_once 'header.php';
   ?>
 <html lang = "en">
 <head>
-<title>Ourwebsite.com/home</title>
+<title>Ourwebsite.com/search_result</title>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
@@ -36,23 +37,22 @@
   }
 </style>
 
-
-
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="http://consort.cs.ualberta.ca/~gd1/search.php">Go Back</a></li>
-        <li><a href="http://consort.cs.ualberta.ca/~gd1/landing_page.php">Home Page</a></li>
+        <li><a href="search.php">Go Back</a></li>
+        <li><a href="landing_page.php">Home Page</a></li>
         <li role="separator" class="divider"></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+
+<?php 
+  
+?>

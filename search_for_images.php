@@ -2,6 +2,7 @@
   <div class="page-header">
   <h2>PhotoInsanity App</h2>
   </div>
+ </html>
 <?php
 	session_start();
 
@@ -23,17 +24,17 @@
 		
 		//check if the dates arent empty
 		if(!empty($start_date)&& !empty($end_date)){
-			$sqlsearchcheck.= 'i.timing between to_date( \''.$start_date.'\', 'yyyy/mm/dd'] )and to_date( \''.$end_date.'\', 'yyyy/mm/dd'] )';
+			$sqlsearchcheck .= 'i.timing between to_date( \''.$start_date.'\', \'mm/dd/yyyy\' )and to_date( \''.$end_date.'\', \'mm/dd/yyyy\' )';
 		}
 
 		//checking if the keywords arent empty
 		if (!empty($keywords)){
-			$sqlsearchcheck.= 'contains(i.place,\''.$keywords.'\',1)>0 or contains(i.subject,\''.$keywords.'\',2)>0 or contains (i.description,\''.$keywords.'\',3)>0';
+			$sqlsearchcheck .= 'contains(i.place,\''.$keywords.'\',1)>0 or contains(i.subject,\''.$keywords.'\',2)>0 or contains (i.description,\''.$keywords.'\',3)>0';
 		}
 
 		//have to fulfill the check "are accessible to the user by the security module". ie. make it so that it if its 1. public anyone can see it, 2. make it shareable to public, 3. private to only that user, unless its to a designated group or theyre the owner 1. here
 		//													2. here                                                      
-		$sqlsearchcheck .= "and ((i.permitted = 1) or (i.permitted <> 1 and i.permitted <> 2 and i.permitted in (select group_id from group_lists where friend_id = \''.$user.'\' or select group_id from groups where user_name=\''.$user.'\')) or (i.permitted = 2 and i.owner_name = \''.$user.'\'");
+		$sqlsearchcheck .= "and ((i.permitted = 1) or (i.permitted <> 1 and i.permitted <> 2 and i.permitted in (select group_id from group_lists where friend_id = \''.$user.'\' or select group_id from groups where user_name=\''.$user.'\')) or (i.permitted = 2 and i.owner_name = \''.$user.'\'))";
 										        //3.above here
 
 
@@ -71,14 +72,14 @@
 		//check if the images are empty or not
 		if (!empty($search_list_to_send)){
 			//if its empty append it to session and then send it to a showcasing thing
-			$_SESSION ['final_result'] = $search_list_to_send;
-			header("location = search_result.php");
+			$_SESSION['final_result'] = $search_list_to_send;
+			header("Location: search_result.php");
 		}
-		else{
-			//still send it but like make a different display as a result
-			$_SESSION['final_result'] = null;
-			header("location = search_result.php");
-		}
+	else {
+		//still send it but like make a different display as a result
+		$_SESSION['final_result'] = null;
+		header("Location: search_result.php");
+	}
 
 	}
 

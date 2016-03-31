@@ -72,7 +72,7 @@
       <div class="panel-heading">Search For Pictures</div>
       <div class="panel-body">
 
-  	  <form action="searchforimages.php" method="POST" name="searchform" enctype="multipart/form-data">
+  	  <form action="search_for_images.php" method="POST" name="searchform" enctype="multipart/form-data">
         <div class="form-group">
         <h1 class="form-signin-heading"></h1>
         <div class="input-group input-group-lg">
