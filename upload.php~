@@ -31,7 +31,7 @@ session_start();
     $file_type=$_FILES['photouploads']['type'][$key];
 		
     $extensions = array("jpeg","jpg","gif");
-    $file_ext=explode('.',$_FILES['photouploads']['name'][$key])	;
+    $file_ext=explode('.',$_FILES['photouploads']['name'][$key]);
     $file_ext=end($file_ext);  
     $file_ext=strtolower(end(explode('.',$_FILES['photouploads']['name'][$key])));  
     if(in_array($file_ext,$extensions ) === false){
