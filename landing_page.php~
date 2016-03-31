@@ -55,15 +55,12 @@
         <li><a href="image_gallery.html">My Pictures</a></li>
         <li><a href="getPhotoInfo.php">Upload Photo</a></li>
         <li><a href="group_homepage.php">Groups</a></li>
-        <li><a href="#">Help</a></li>
         <li><a href="search.php">Search</a></li>
         <td>
         <?php 
         session_start();
         if($_SESSION["username"] == 'admin'): ?>
         <li><a href="admin_data_analysis.html">Admin Stuff</a></li>
-        <?php else: ?> 
-        sweetAlert("User is not Admin");
         <?php endif; ?>
         </td>
         <li><a href="logout.php">Logout</a></li>
