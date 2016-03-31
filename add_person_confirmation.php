@@ -17,7 +17,7 @@ session_start();
 	$notice = $_POST['notice'];
 
 	$insertquery = ("INSERT INTO group_lists VALUES (:group_id, :friend, :date_added, :notice)");
-	$stid = oci_parse("$conn","$insertquery");
+	$stid = oci_parse($conn,$insertquery);
 
 	oci_bind_by_name($stid, ":group_id", $group_id);
 	oci_bind_by_name($stid, ":friend", $friend);
@@ -26,6 +26,9 @@ session_start();
 
 	oci_execute($stid);
 
+	oci_close($conn);
+
+	header("Location: landing_page.php");
 	?>
 </body>
 </html>
