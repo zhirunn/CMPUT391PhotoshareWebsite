@@ -5,7 +5,7 @@
 </html>
 <?php 
 	session_start();
-  include 'header.php';
+  require once 'header.php';
   ?>
 <html lang = "en">
 <head>
