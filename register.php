@@ -1,3 +1,8 @@
+<html>
+  <div class="page-header">
+  <h2>PhotoInsanity App</h2>
+</div>
+
 <!This really should be named with a .html extension but......>
 <html lang = "en">
 <head>

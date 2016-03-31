@@ -1,4 +1,7 @@
 <html>
+  <div class="page-header">
+  <h2>PhotoInsanity App</h2>
+  </div>
 <?php
 session_start();
 ?>
@@ -36,8 +39,7 @@ session_start();
 			</div>
 			<div class="form-group">
 				<label for="passwordd" class="sr-only">Password</label>
-				<input type="password" class="form-control" id="passwordd" value="" maxlength="40" placeholder="Password">
-				<input type="text" class="form-control" id="passwordd" name="passwordd" value="" maxlength="40" placeholder="Password">
+				<input type="password" class="form-control" id="passwordd" name="passwordd" value="" maxlength="40" placeholder="Password">
 			</div>
 			<div>
 				<input type="submit" class="btn btn-lg btn-primary btn-block" value="Login"/>
