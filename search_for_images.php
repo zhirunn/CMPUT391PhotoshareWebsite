@@ -3,6 +3,51 @@
   <h2>PhotoInsanity App</h2>
   </div>
  </html>
+ <html lang = "en">
+<head>
+<title>Ourwebsite.com/search_result</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
+  integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" 
+  integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <!-- CSS for navigation bars -->
+  <link rel="stylesheet" href="include/css/nav.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+  integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</head>
+<style>
+  body {
+    background-color: #008080;
+    background-size: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="search.php">Go Back</a></li>
+        <li><a href="landing_page.php">Home Page</a></li>
+        <li role="separator" class="divider"></li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
 <?php
 	session_start();
 
@@ -59,8 +104,15 @@
 		$sqlimagecheck=("SELECT i.photoid FROM images i WHERE ".$sqlsearchcheck);
 		$stid = oci_parse($conn, $sqlimagecheck);
 		$results=oci_execute($stid);
-		//grab results
-		$search_list=oci_fetch_all($stid, $results);
+
+		//referenced from Example 6 in PHP Lab
+		while ($row=oci_fetch_array($stid,OCI_BOTH)){
+	    	$photo_display= $row['PHOTO_ID'];
+	    	echo '<a href="imagegallery.php?id='.$photo_display.'"><img src="getImage.php?id='.$photo_display.'&type=thumbnail" width="175" height="200" />';
+	    }
+		
+		// test code grab results
+		/*$search_list=oci_fetch_all($stid, $results);
 
 		//send everything to an array as you look at each value
 		$search_list_to_send=array();
@@ -73,14 +125,14 @@
 		if (!empty($search_list_to_send)){
 			//if its empty append it to session and then send it to a showcasing thing
 			$_SESSION['final_result'] = $search_list_to_send;
-			header("Location: search_result.php");
+			//header("Location: search_result.php");
 		}
 	else {
 		//still send it but like make a different display as a result
 		$_SESSION['final_result'] = null;
-		header("Location: search_result.php");
+		//header("Location: search_result.php");
 	}
-
+		*/
 	}
 
 ?>

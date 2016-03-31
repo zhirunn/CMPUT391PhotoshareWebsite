@@ -6,7 +6,7 @@
 <?php 
 	session_start();
   $search_result = $_SESSION['final_result'];
-  required_once 'header.php';
+  require 'header.php';
   ?>
 <html lang = "en">
 <head>
@@ -52,7 +52,3 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-<?php 
-  
-?>
