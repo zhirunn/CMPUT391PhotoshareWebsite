@@ -25,7 +25,8 @@ session_start();
 
 	oci_close($conn);
 
-	//header("Location: landing_page.php");
+	echo "Friend removed.";
+	header('Refresh: 2; URL = landing_page.php');
 	?>
 </body>
 </html>

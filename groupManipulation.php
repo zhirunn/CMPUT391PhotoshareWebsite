@@ -30,44 +30,52 @@ session_start();
 	<?php
 	$conn = oci_connect("gd1", "N1o2t3h4i5");
 
-	$username = $_SESSION['user_name'];
-	$groupQuery = ("SELECT * FROM groups WHERE user_name = :username");
+	$username = $_SESSION['username'];
+	$groupQuery = ("SELECT * FROM group_lists, groups WHERE groups.user_name = :username AND groups.group_id = group_lists.group_id");
 	$stid = oci_parse($conn, $groupQuery);
 
 	oci_bind_by_name($stid, ":username", $username);
 
 	oci_execute($stid);
 
-	$count = oci_fetch_all($stid, $result);
-
 	?>
 
-	<table width=\"100%\" align=\"center\" cellpadding=\"5\" cellspacing=\"5\">
-		<tr align=\"center\" class=\"source1\">
+	<table>
 
     		<td><strong>GROUP ID</strong></td>
     		<td><strong>GROUP NAME</strong></td>
     		<td><strong>DATE CREATED</strong></td>
     	</tr>
     </table>
-	<?php if($count) {?>
-    	
-		<?php foreach($result as $row) { ?>
-			<tr align="center" class="rows">
-				<td><?php echo $row['GROUP_ID'];?></td>
-				<td><?php echo $row['GROUP_NAME'];?></td>
-				<td><?php echo $row['DATE_CREATED'];?></td>
-			</tr>
-		<?php }?>
-	<?php } ?>
+	<?php 
+	while($result = oci_fetch_array($stid)) {
+		//print_r($result);
+		echo "<tr>";
+		echo "<td>" .$result['GROUP_ID']. "</td><td></td>";
+		echo "<td>" .$result['FRIEND_ID']. "</td><td></td>";
+		echo "<td>" .$result['DATE_ADDED']. "</td><td></td>";
+		echo "</tr>";
 
-	<div class="dropdown">
-  		<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Action
-  		<span class="caret"></span></button>
-  		<ul class="dropdown-menu">
-    		<li><a href="addUser.php">Add an user</a></li>
-    		<li><a href="removeUser">Remove an user</a></li>
-    	</ul>
+	}
+	?>
+
+	<div>
+		<button id="addUser" class="btn btn-lg btn-default" >Add Friend to Group</button>
+
+		<script type="text/javascript">
+    		document.getElementById("addUser").onclick = function () {
+        		location.href = "addUser.php";
+    		};
+		</script>
+	</div>
+		<div>
+		<button id="removeUser" class="btn btn-lg btn-default" >Remove friend from Group</button>
+
+		<script type="text/javascript">
+    		document.getElementById("removeUser").onclick = function () {
+        		location.href = "removeUser.php";
+    		};
+		</script>
 	</div>
 </body>
 

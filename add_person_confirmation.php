@@ -4,7 +4,7 @@ session_start();
 
 <html>
 <head>
-	<title>Add confirmation | PhotoInsanity<title>
+	<title>Add confirmation | PhotoInsanity</title>
 
 </head>
 <body>
@@ -29,6 +29,7 @@ session_start();
 	oci_close($conn);
 
 	echo "Friend added.";
+	header('Refresh: 2; URL = landing_page.php');
 	?>
 </body>
 </html>
