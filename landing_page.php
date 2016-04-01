@@ -58,6 +58,7 @@
         <li><a href="getPhotoInfo.php">Upload Photo</a></li>
         <li><a href="group_homepage.php">Groups</a></li>
         <li><a href="search.php">Search</a></li>
+        <li><a href="help.html">Help</a></li>
         <td>
         <?php 
         session_start();

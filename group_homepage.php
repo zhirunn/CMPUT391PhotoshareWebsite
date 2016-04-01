@@ -7,7 +7,7 @@
  ?>
 <html lang = "en">
 <head>
-<title>Ourwebsite.com/home</title>
+<title>Group Managment | PhotoInsanity</title>
 
 <?php 
   echo "<h1>Groups</h1>";

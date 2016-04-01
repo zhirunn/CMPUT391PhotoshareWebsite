@@ -9,18 +9,8 @@ session_start();
 
 <! Functionality for showing hidden input form from Hugh Craig.>
 <script>
-  <script>
-  function showHidden() {
-    var groupID = document.getElementById('groupID')
-    groupID.style.display = 'block';
-    groupID.setAttribute("required","true");
-  }
-  function hideHidden() {
-    var groupID = document.getElementById('groupID')
-    groupID.style.display = 'none';
-    groupID.value="";
-    groupID.removeAttribute("required");
-  }
+function showHidden() { document.getElementByID('groupid').style.display = 'block'; }
+function hideHidden() { document.getElementByID('groupid').style.display = 'none'; }
 </script>
 </head>
 

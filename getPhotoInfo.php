@@ -83,7 +83,7 @@ function hideHidden() { document.getElementByID('groupid').style.display = 'none
         <input type="radio" name="permission" value="private" onclick="hideHidden();" checked>Private<br>
         <input type="radio" name="permission" value="public" onclick="hideHidden();" >Public<br>
         <input type="radio" name="permission" value="specific group" onclick="showHidden();">Specific Group<br>
-
+        <input type="text" name="groupID" class = "form-control" id="groupID" style="display:none; width:400px" placeholder="Group ID">
     </div>
     <div>
         <label for="subject">Subject:</label>
