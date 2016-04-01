@@ -1,3 +1,7 @@
+<html>
+  <div class="page-header">
+  <h2>PhotoInsanity App</h2>
+</div>
 <?php
 session_start();
 ?>
@@ -6,7 +10,7 @@ session_start();
 <body>
 
 <?php
-	include ("PHPconnectionDB.php");
+	include ("PHPconnectionDB_final.php");
 
 	$conn=oci_connect("gd1", "N1o2t3h4i5");
 

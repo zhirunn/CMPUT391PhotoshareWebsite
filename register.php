@@ -1,31 +1,90 @@
+<html>
+  <div class="page-header">
+  <h2>PhotoInsanity App</h2>
+</div>
+
 <!This really should be named with a .html extension but......>
 <html lang = "en">
 <head>
-<title>Ourwebsite.com/register</title>
-<script src="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.css">
+    <title>Register | Photoshare</title>
+    <script src="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <title>Login | Photoshare</title>
+
 </head>
-<style>
-  body {
-    background-color: #008080;
-    background-size: relative;
-    background-position: center;
-    background-repeat: no-repeat;
-}</style>
+<style type="text/css">
+    .form-field {
+        clear:both;
+        padding:10px;
+        width:300px;
+    }
+    .form-field label {
+        float: left;
+        width: 150px;
+        text-align: right;
+    }
+
+    .form-field input {
+        float:right;
+        width: 150px;
+        text-align: left;
+    }
+
+    #submit {
+        text-align: center;
+    }
+
+    body {
+        background-color: #008080;
+        background-size: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+</style>
 
 <body>
     <h1>Create a New Account</h1>
-    <form id ='register' action='registerconfirmation.php' method='post'
-    accept-charset='UTF-8' name='registrationForm' onsubmit="return validateForm();">
-    First Name : <input type= "text" name="first_name"/><br/>
-    Last Name : <input type= "text" name="last_name"/><br/>
-    E-mail Address : <input type= "text" name="email"/><br/>
-    Address: <input type= "text" name="address"/><br/>
-    Phone Number: <input type= "text" name="phone"/><br/>
-    Username: <input type= "text" name="user_name"/><br/>
-    Password: <input type= PASSWORD name="password"/><br/>
-    Confirm Password: <input type= PASSWORD name = "passwordconfirm"/><br/>
-    <input type="submit" name="validate" value="Register Account"/>
+    <form id ='register' action='registerconfirmation.php' method='post' accept-charset='UTF-8' name='registrationForm' onsubmit="return validateForm();">
+    <fielset>
+        <legend>Account Information</legend>
+        <div class="form-field">
+            First Name : <input type= "text" name="first_name"/><br/>
+        </div>
+        <div class="form-field">
+            Last Name : <input type= "text" name="last_name"/><br/>
+        </div>
+        <div class="form-field">
+            E-mail Address : <input type= "text" name="email"/><br/>
+        </div>
+        <div class="form-field">
+            Address: <input type= "text" name="address"/><br/>
+        </div>
+        <div class="form-field">
+            Phone Number: <input type= "text" name="phone"/><br/>
+        </div>
+        <div class="form-field">
+            Username: <input type= "text" name="user_name"/><br/>
+        </div>
+        <div class="form-field">
+            Password: <input type= PASSWORD name="password"/><br/>
+        </div>
+        <div class="form-field">
+            Confirm Password: <input type= PASSWORD name = "passwordconfirm"/><br/>
+        </div>
+        <div class="form-field">
+            <input type="submit" class="btn btn-default" name="validate" value="Register Account"/>
+        </div>
+    </fieldset>
     </form>
     <script>
         //this validates the different account things

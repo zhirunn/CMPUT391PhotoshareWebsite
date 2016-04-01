@@ -1,3 +1,6 @@
+<html lang = "en">
+<head>
+<title>Ourwebsite.com/mygroups</title>
 <?php 
 	session_start();
 	$conn = oci_connect("wong5", "Justin15Wong");
@@ -10,6 +13,3 @@
 	echo "<h1>Hello $first_name[0]</h1>";
   oci_close($conn);
  ?>
-<html lang = "en">
-<head>
-<title>Ourwebsite.com/mygroups</title>
