@@ -1,7 +1,7 @@
 <?php
   $usern = $_SESSION["username"];
   $id = $_GET['id'];
-  $type = 'photo';
+  $type = 'thumbnail';
   $conn = oci_connect('gd1', 'N1o2t3h4i5');
   $query = "SELECT thumbnail FROM images WHERE photo_id = '$id'";
   

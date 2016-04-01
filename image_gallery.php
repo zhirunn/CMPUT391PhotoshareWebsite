@@ -49,7 +49,7 @@ session_start();
 	<?php
 		while($result = oci_fetch_array($stid)) {
 			$dis = $result['PHOTO_ID'];
-			echo "<a href='getImage.php?id=$dis'><img src='Image/".$result['thumbnail']."' /></a>";
+			echo "<a href='getImage.php?id=$dis'><img src='getImageThumb.php?id=$dis' /></a>";
 		}
 	?>
 		
