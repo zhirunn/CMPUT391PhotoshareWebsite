@@ -7,8 +7,6 @@ session_start();
 <head>
 <title>Update Photo Info | PhotoShare</title>
 
-
-
 <! Functionality for showing hidden input form from Hugh Craig.>
 <script>
   <script>
@@ -49,7 +47,7 @@ session_start();
         <input type="radio" name="permission" value="private" onclick="hideHidden();" checked>Private<br>
         <input type="radio" name="permission" value="public" onclick="hideHidden();" >Public<br>
         <input type="radio" name="permission" value="specific group" onclick="showHidden();">Specific Group
-        <input type="text" name="groupID" class = "form-control" id="groupID" style="display:none;width:400px" placeholder="Group ID">
+        <input type="text" name="groupID" class = "form-control" id="groupID" style="display:none; width:400px" placeholder="Group ID">
 
     </div>
     <div>
@@ -62,4 +60,4 @@ session_start();
 </html>
 
 
-<! http://techstream.org/Web-Development/PHP/Single-File-Upload-With-P
+<! http://techstream.org/Web-Development/PHP/Single-File-Upload-With-PHP>

@@ -28,7 +28,7 @@ session_start();
 
 	oci_close($conn);
 
-	header("Location: landing_page.php");
+	echo "Friend added.";
 	?>
 </body>
 </html>

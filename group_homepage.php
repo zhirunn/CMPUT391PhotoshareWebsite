@@ -43,16 +43,10 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="http://consort.cs.ualberta.ca/~preyansh/landing_page.php">Go Back</a></li>
-        <li><a href="http://consort.cs.ualberta.ca/~preyansh/image_gallery.html">My Groups</a></li>
-        <li><a href="http://consort.cs.ualberta.ca/~preyansh/group_signup.php">Create New Group</li>
+        <li><a href="landing_page.php">Go Back</a></li>
+        <li><a href="groupManipulation.php">My Groups</a></li>
+        <li><a href="group_signup.php">Create New Group</li>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search for Groups">
-        </div>
-        <button type="submit" class="btn btn-default">Search</button>
-      </form>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
