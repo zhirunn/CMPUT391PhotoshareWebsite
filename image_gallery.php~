@@ -38,22 +38,23 @@ session_start();
 	
 	oci_execute($stid);
 	
-	$count = oci_fetch_all($stid, $result);
+
+	
+	//print_r($result);
 	
 	?>
 	
 	<table width=\"100%\" align=\"center\" cellpadding=\"5\" cellspacing=\"5\">
 	<tr align=\"center\" class=\"source1\">
 	<?php
-	if($count) { 
-		foreach($result as $row) {
-			echo "<a href='getImage.php' <img src='Image/".$row['thumbnail']."' /> </a>";
+		while($result = oci_fetch_array($stid)) {
+			$dis = $result['PHOTO_ID'];
+			echo "<a href='getImage.php?id=$dis'><img src='$result['thumbnail'] /></a>";
 		}
-	}
 	?>
 		
-	
-	
+	</tr>
+   </table>
 </body>
 
 </html>

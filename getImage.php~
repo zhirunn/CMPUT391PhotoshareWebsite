@@ -1,8 +1,9 @@
 <?php
   $usern = $_SESSION["username"];
+  $id = $_GET['id'];
   $type = 'photo';
   $conn = oci_connect('gd1', 'N1o2t3h4i5');
-  $query = "SELECT photo FROM images WHERE owner_name = 'test'";
+  $query = "SELECT thumbnail FROM images WHERE photo_id = '$id'";
   
   $stid = oci_parse($conn, $query);
   
@@ -14,6 +15,7 @@
   $row = oci_fetch_array($stid);
   $type = strtoupper($type);
   $result = $row[$type]->load();
+  
   
   header("Content-type: image/jpeg");
   echo $result;
