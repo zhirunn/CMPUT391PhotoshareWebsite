@@ -70,7 +70,7 @@ session_start();
 			$dis = $result['PHOTO_ID'];
 			$subject = $result['SUBJECT'];
 			$date_created = $result['DATE_CREATED'];
-			echo "<a href='getImage.php?id=$dis'><img src='getImageThumb.php?id=$dis' /></a>";
+			echo "<a href='disp.php?id=$dis'><img src='getImageThumb.php?id=$dis' /></a>";
 			echo "$subject";
 			echo "$date_created";
 		}

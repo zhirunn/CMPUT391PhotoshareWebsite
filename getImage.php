@@ -23,11 +23,6 @@
     oci_close($conn);
 ?>
 
-<form action="updatePhoto.php" method="post">
-    <div>
-        <input type-"submit" class="btn btn-primary" value="Update Photo Info"/>
-    </div>
-</form>
 
 <!http://stackoverflow.com/questions/8499633/how-to-display-base64-images-in-html>
 <!http://stackoverflow.com/questions/7793009/how-to-retrieve-images-from-mysql-database-and-display-in-an-html-tag>
