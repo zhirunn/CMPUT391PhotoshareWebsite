@@ -5,7 +5,7 @@ session_start();
 <!doctype html>
 <html>
 <head>
-<title>Upload | PhotShare</title>
+<title>Upload | PhotoShare</title>
 
 <! Code for JQuery Datepicker from jqueryui.com>
 <meta charset="utf-8">

@@ -19,7 +19,7 @@ session_start();
         oci_bind_by_name($stid, ":username", $username);
         oci_bind_by_name($stid, ":passwordd", $passwordd, 40);
         
-        oci_execute($stid;);
+        oci_execute($stid);
         $user_name = oci_fetch($stid);
         
         if($user_name == false)

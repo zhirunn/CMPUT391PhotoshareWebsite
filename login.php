@@ -68,6 +68,7 @@ h2{
 <div class = "container form-signin">
          
 <?php
+session_start();
    $msg = '';
    
    if (isset($_POST['login']) && !empty($_POST['username']) 
@@ -77,7 +78,7 @@ h2{
          $_POST['password'] == '1234') {
          $_SESSION['valid'] = true;
          $_SESSION['timeout'] = time();
-         $_SESSION['username'] = 'user';
+         //$_SESSION['username'] = 'user';
          
          echo 'You have entered a valid username and password';
       }else {

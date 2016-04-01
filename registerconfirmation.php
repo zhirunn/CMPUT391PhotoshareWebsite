@@ -34,7 +34,7 @@ include ("PHPconnectionDB.php");
       $address = $_POST['address'];
       $phonenum = $_POST['phone'];
 
-      $conn=oci_connect("wong5", "Justin15Wong");
+      $conn=oci_connect("gd1", "N1o2t3h4i5");
       $sql = ("SELECT * FROM users WHERE user_name = :user_name");
       $sql2 = ("SELECT * FROM persons WHERE email = :email");
       $stid = oci_parse($conn,$sql);
@@ -83,6 +83,7 @@ include ("PHPconnectionDB.php");
         oci_bind_by_name($stid, ":email", $email);
         oci_bind_by_name($stid, ":phonenum", $phonenum);
         oci_execute($stid);
+        oci_commit($conn);
       }
       oci_close($conn);
 
