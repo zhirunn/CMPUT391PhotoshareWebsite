@@ -14,7 +14,7 @@ The following is a list of tasks that will be completed prior to submission of t
       - [*] Implement creation of user groups
       - [*] Implement adding/removing users into groups
       - [*] Implement admin account
-      - [] Implement Updating of photo info
+      - [*] Implement Updating of photo info
   - [*] Implement uploading module
       - [*] Implement Uploading of photos, including description and security specification  
   - [] Implement display module
