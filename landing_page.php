@@ -52,7 +52,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Gallery</a></li>
+        <li><a href="all_images_basic.php">Gallery</a></li>
 
         <li><a href="image_gallery.php">My Pictures</a></li>
         <li><a href="getPhotoInfo.php">Upload Photo</a></li>

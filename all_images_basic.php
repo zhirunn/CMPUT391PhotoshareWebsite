@@ -47,11 +47,9 @@ session_start();
 	$conn = oci_connect("gd1", "N1o2t3h4i5");
 	
 	$username =$_SESSION['username'];
-	$imageQuery = ("SELECT * FROM images WHERE owner_name = :username");
+	$imageQuery = ("SELECT * FROM images");
 	
 	$stid = oci_parse($conn, $imageQuery);
-	
-	oci_bind_by_name($stid, ":username", $username);
 	
 	oci_execute($stid);
 	
