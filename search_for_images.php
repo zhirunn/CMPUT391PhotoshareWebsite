@@ -52,7 +52,7 @@
 <?php
 	session_start();
 	//grab literally everything you need, username, description of pictures, the subject of picturs, place, dates given, keywords, and the serach by from the last thing. This is all used for the total query
-	$user=$_SESSION['user'];
+	$user=$_SESSION['username'];
 	$description=$_POST['description'];
 	$subject=$_POST['subject'];
 	$place=$_POST['place'];
@@ -65,41 +65,45 @@
 	//do a bunch of if statements to check what is what and what to add based off of the order of things you asked for THANKS HUGHBOI
 	if (!empty($keywords)|| !empty($start_date) && !empty($end_date)){
 		
-		//check if the dates arent empty
+		//checking and add if the keywords arent empty
+		if (!empty($keywords)){
+			$sqlsearchcheck .= '(contains(i.place,\''.$keywords.'\',1)>0 or contains(i.subject,\''.$keywords.'\',2)>0 or contains(i.description,\''.$keywords.'\',3)>0)';
+		}
+		//check and add if the dates arent empty
 		if(!empty($start_date)&& !empty($end_date)){
+			if(!empty($keywords)){
+				$search_cond .= ' AND';
+			}
 			$sqlsearchcheck .= 'i.timing between to_date( \''.$start_date.'\', \'mm/dd/yyyy\' )and to_date( \''.$end_date.'\', \'mm/dd/yyyy\' )';
 		}
-		//checking if the keywords arent empty
-		if (!empty($keywords)){
-			$sqlsearchcheck .= 'contains(i.place,\''.$keywords.'\',1)>0 or contains(i.subject,\''.$keywords.'\',2)>0 or contains (i.description,\''.$keywords.'\',3)>0';
-		}
-		//have to fulfill the check "are accessible to the user by the security module". ie. make it so that it if its 1. public anyone can see it, 2. make it shareable to public, 3. private to only that user, unless its to a designated group or theyre the owner 1. here
-		//													2. here                                                      
-		$sqlsearchcheck .= "and ((i.permitted = 1) or (i.permitted <> 1 and i.permitted <> 2 and i.permitted in (select group_id from group_lists where friend_id = \''.$user.'\' or select group_id from groups where user_name=\''.$user.'\')) or (i.permitted = 2 and i.owner_name = \''.$user.'\'))";
+		//have to fulfill the check "are accessible to the user by the security module". ie. make it so that it if its 1. public anyone can see it, 2. make it shareable to public, 3. private to only that user, unless its to a designated group or theyre the owner
+		//						 1.here					2. here                                                      
+		$sqlsearchcheck .= ' and ((i.permitted = 1) or (i.permitted = 2 and i.owner_name = \''.$user.'\') or (i.permitted <> 1 and i.permitted <> 2 and i.permitted in (select group_id from group_lists where friend_id = \''.$user.'\') or i.permitted in (select group_id from groups where user_name=\''.$user.'\')))';
 										        //3.above here
 		//check for searchby rankings
 		//oldest ranking
 		if ($searchby == 'oldest'){
-			$sqlsearchcheck .= "order by i.timing desc";
+			$sqlsearchcheck .= " order by i.timing desc )";
 		}	
 		//newest ranking
 		else if ($searchby == 'newest'){
-			$sqlsearchcheck .= "order by i.timing asc";
+			$sqlsearchcheck .= " order by i.timing asc )";
 		}
 		//normal ranking
 		else{
 			//grab scores for what you need, thanks hugh!
-			$sqlsearchcheck .= "order_by(rank() over order_by(6*score(2)+3*score(1)+score(3)) desc";
+			$sqlsearchcheck .= " order by(rank() over (order by(6*score(2)+3*score(1)+score(3)))) desc";
 		}
 		//run after its all added up depending on what you searched for at that time
-		$conn=oci_connect("wong5", "Justin15Wong");
-		$sqlimagecheck=("SELECT i.photoid FROM images i WHERE ".$sqlsearchcheck);
+		$conn=oci_connect("gd1", "N1o2t3h4i5");
+		$sqlimagecheck=('SELECT i.photo_id FROM images i WHERE '.$sqlsearchcheck);
+		//echo $sqlimagecheck;
 		$stid = oci_parse($conn, $sqlimagecheck);
 		$results=oci_execute($stid);
 		//referenced from Example 6 in PHP Lab
 		while ($row=oci_fetch_array($stid,OCI_BOTH)){
 	    	$photo_display= $row['PHOTO_ID'];
-	    	echo '<a href="imagegallery.php?id='.$photo_display.'"><img src="getImage.php?id='.$photo_display.'&type=thumbnail" width="175" height="200" />';
+	    	echo '<a href="imagegallery.php?id='.$photo_display.'"><img src="getImage.php?id='.$photo_display.'&type=thumbnail" width="100" height="100" />';
 	    }
 		
 		// test code grab results
@@ -123,4 +127,8 @@
 	}
 		*/
 	}
+
+	//select i.photoid from images i where (contains(i.place,'forest',1)>0 or contains(i.subject,'forest',2)>0 or contains(i.description,'forest',3)>0) and ((i.permitted = 1) or (i.permitted = 2 and i.owner_name = 'test') or (i.permitted <> 1 and i.permitted <> 2 and i.permitted in (select group_id from group_lists where friend_id = 'test' or (select group_id from groups where user_name='test')))order by(rank() over (order by(6*score(2)+3*score(1)+score(3)))) desc)
 ?>
+
+
