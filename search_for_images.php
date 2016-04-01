@@ -50,6 +50,19 @@
 </nav>
 
 <?php
+	//NEED TO REBUILD ALL OF OUR TABLES!
+	$conn=oci_connect("gd1", "N1o2t3h4i5");
+	function rebuild($conn) {
+	$rebuilds = "alter index subjectindex rebuild ";
+	$rebuildp = "alter index placeindex rebuild ";
+	$rebuildd = "alter index descriptionindex rebuild ";
+	$stid = oci_parse($conn, $rebuilds);	    
+	$res=oci_execute($stid);
+	$stid = oci_parse($conn, $rebuildp);	    
+	$res=oci_execute($stid);
+	$stid = oci_parse($conn, $rebuildd);	    
+	$res=oci_execute($stid);
+}
 	session_start();
 	//grab literally everything you need, username, description of pictures, the subject of picturs, place, dates given, keywords, and the serach by from the last thing. This is all used for the total query
 	$user=$_SESSION['username'];
@@ -62,57 +75,58 @@
 	$keywords=str_replace(' ', '&', $keywords);
 	$searchby = $_POST['searchby'];
 	$sqlsearchcheck='';
-	//do a bunch of if statements to check what is what and what to add based off of the order of things you asked for THANKS HUGHBOI
+	//do a bunch of if statements to check what is what and what to add based off of the order of things you asked for made with help from Hugh Craig 
 	if (!empty($keywords)|| !empty($start_date) && !empty($end_date)){
 		
 		//checking and add if the keywords arent empty
 		if (!empty($keywords)){
-			$sqlsearchcheck .= '(contains(i.place,\''.$keywords.'\',1)>0 or contains(i.subject,\''.$keywords.'\',2)>0 or contains(i.description,\''.$keywords.'\',3)>0)';
+			$sqlsearchcheck .= '(contains(i.place,\''.$keywords.'\', 1)>0 or contains(i.subject,\''.$keywords.'\', 2)>0 or contains(i.description,\''.$keywords.'\', 3)>0)';
 		}
-		//check and add if the dates arent empty
+		//check and add if the dates arent empty, if there happens to be a keyword, add an and statement, then do the timing
 		if(!empty($start_date)&& !empty($end_date)){
-			if(!empty($keywords)){
-				$search_cond .= ' AND';
-			}
-			$sqlsearchcheck .= 'i.timing between to_date( \''.$start_date.'\', \'mm/dd/yyyy\' ) and to_date( \''.$end_date.'\', \'mm/dd/yyyy\' )';
+			if(!empty($keywords)) 
+				$sqlsearchcheck .= 'and';
+			$sqlsearchcheck .= ' i.timing between to_date( \''.$start_date.'\', \'mm/dd/yyyy\' ) and to_date( \''.$end_date.'\', \'mm/dd/yyyy\' )';
+			//need to add error checking if dates are fucked if start date >end date
+
 		}
 		//have to fulfill the check "are accessible to the user by the security module". ie. make it so that it if its 1. public anyone can see it, 2. make it shareable to public, 3. private to only that user, unless its to a designated group or theyre the owner
 		//						 1.here					2. here                                                      
 		$sqlsearchcheck .= ' and ((i.permitted = 1) or (i.permitted = 2 and i.owner_name = \''.$user.'\') or (i.permitted <> 1 and i.permitted <> 2 and i.permitted in (select group_id from group_lists where friend_id = \''.$user.'\') or i.permitted in (select group_id from groups where user_name=\''.$user.'\')))';
 										        //3.above here
+
 		//check for searchby rankings
 		//oldest ranking
 		if ($searchby == 'oldest'){
-			$sqlsearchcheck .= " order by i.timing desc )";
+			$sqlsearchcheck .= " order by i.timing desc";
 		}	
 		//newest ranking
-		else if ($searchby == 'newest'){
-			$sqlsearchcheck .= " order by i.timing asc )";
-		}
-		//normal ranking
-		else{
-			//grab scores for what you need, thanks hugh!
+		else if ($searchby == 'none' and !empty($keywords)){
 			$sqlsearchcheck .= " order by(rank() over (order by(6*score(2)+3*score(1)+score(3)))) desc";
 		}
+		//normal ranking will be newest
+		else{
+			//grab scores for what you need, thanks hugh!
+			$sqlsearchcheck .= " order by i.timing asc";
+		}
 		//run after its all added up depending on what you searched for at that time
-		$conn=oci_connect("gd1", "N1o2t3h4i5");
 		$sqlimagecheck=('SELECT i.photo_id FROM images i WHERE '.$sqlsearchcheck);
-		echo $sqlimagecheck;
+		//echo $sqlimagecheck;
 		$stid = oci_parse($conn, $sqlimagecheck);
 		$results=oci_execute($stid);
 		//referenced from Example 6 in PHP Lab
 		while ($row=oci_fetch_array($stid,OCI_BOTH)){
 	    	$photo_display= $row['PHOTO_ID'];
-	    	echo '<a href="imagegallery.php?id=$photo_display"><img src="getImageThumb.php?id=$photo_display &type=thumbnail" width="100" height="100" />';
+	    	echo "<a href='image_gallery.php?id=$photo_display'><img src='getImageThumb.php?id=$photo_display' width='200' height='200' /></a>";
 	    }
 	}
 	
-	else {
+	else if (empty($results)){
 		echo "No Results found";
 	}
 
-	//select i.photoid from images i where (contains(i.place,'forest',1)>0 or contains(i.subject,'forest',2)>0 or contains(i.description,'forest',3)>0) and ((i.permitted = 1) or (i.permitted = 2 and i.owner_name = 'test') or (i.permitted <> 1 and i.permitted <> 2 and i.permitted in (select group_id from group_lists where friend_id = 'test' or (select group_id from groups where user_name='test')))order by(rank() over (order by(6*score(2)+3*score(1)+score(3)))) desc)
-?>
+	//SELECT i.photo_id FROM images i WHERE (contains(i.place,'Agumon',1)>0 or contains(i.subject,'Agumon',2)>0 or contains(i.description,'Agumon',3)>0)i.timing between to_date( '03/01/2016', 'mm/dd/yyyy' ) and to_date( '04/01/2016', 'mm/dd/yyyy' ) and ((i.permitted = 1) or (i.permitted = 2 and i.owner_name = 'test') or (i.permitted <> 1 and i.permitted <> 2 and i.permitted in (select group_id from group_lists where friend_id = 'test') or i.permitted in (select group_id from groups where user_name='test'))) order by i.timing asc )
+	?>
 </html>
 
 

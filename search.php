@@ -100,7 +100,7 @@
         <label for="searchby">Sort by:</label><br>
         	<input type="radio" name="searchby" value="oldest"> Oldest
         	<input type="radio" name="searchby" value="newest">Newest
-        	<input type="radio" name="searchby" value="default" checked> None	
+        	<input type="radio" name="searchby" value="none" checked> None	
         </div>
         <button class="btn btn-lg btn-primary" type="submit">Search</button>
       </form>
