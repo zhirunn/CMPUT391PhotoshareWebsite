@@ -82,8 +82,7 @@ ON images(subject)
 INDEXTYPE IS CTXSYS.CONTEXT;
 
 CREATE INDEX descriptionindex
-ON images(description) 
-
+ON images(description)
 INDEXTYPE IS CTXSYS.CONTEXT;
 
 

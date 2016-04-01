@@ -49,7 +49,11 @@ session_start();
 	<?php
 		while($result = oci_fetch_array($stid)) {
 			$dis = $result['PHOTO_ID'];
+			$subject = $result['SUBJECT'];
+			$date_created = $result['DATE_CREATED'];
 			echo "<a href='getImage.php?id=$dis'><img src='getImageThumb.php?id=$dis' /></a>";
+			echo "$subject";
+			echo "$date_created";
 		}
 	?>
 		

@@ -74,4 +74,5 @@ function hideHidden() { document.getElementByID('groupid').style.display = 'none
 </body>
 </html>
 
+
 <! http://techstream.org/Web-Development/PHP/Single-File-Upload-With-PHP>
