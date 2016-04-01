@@ -2,7 +2,7 @@
 session_start();
 
 
-	$conn = oci_connect("wong5", "Justin15Wong");
+	$conn = oci_connect("gd1", "N1o2t3h4i5");
 	if (!$conn) {
 		$e = oci_error();
 		trigger_error(htmlentities($e['message'], ENT_QUOTES), E_USER_ERROR);

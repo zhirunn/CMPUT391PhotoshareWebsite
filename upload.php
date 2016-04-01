@@ -1,7 +1,3 @@
-<html>
-  <div class="page-header">
-  <h2>PhotoInsanity App</h2>
-</div>
 <?php
 session_start();
 ?>
@@ -10,92 +6,74 @@ session_start();
 <body>
 
 <?php
-	include ("PHPconnectionDB_final.php");
-
-	$conn=oci_connect("gd1", "N1o2t3h4i5");
-
-	$username = $_SESSION['username'];
-	$permission = $_POST['permission'];
-
-	if ($permission == "public") {
-		$permission = 1;
-	} else if($permission == "private") {
-		$permission = 2;
-	} else {
-		$permission = $permission;
-	}
-
-	$subject = $_POST['subject'];
-	$place = $_POST['place'];
-	$timing = $_POST['datepicker'];
-	$time = strtotime($timing);	
-	$timing = date("d/M/Y",$time);
-	$description = $_POST['description'];
-
-	foreach ($_FILES['photouploads']['tmp_name'] as $key => $tmp_name) {
-
+  include ("PHPconnectionDB_final.php");
+  $conn=oci_connect("gd1", "N1o2t3h4i5");
+  $username = $_SESSION['username'];
+  $permission = $_POST['permission'];
+  if ($permission == "public") {
+    $permission = 1;
+  } else if($permission == "private") {
+    $permission = 2;
+  } else {
+    $permission = $permission;
+  }
+  $subject = $_POST['subject'];
+  $place = $_POST['place'];
+  $timing = $_POST['datepicker'];
+  $time = strtotime($timing); 
+  $timing = date("d/M/Y",$time);
+  $description = $_POST['description'];
+  foreach ($_FILES['photouploads']['tmp_name'] as $key => $tmp_name) {
     $photo_id = mt_rand();
     $file_name = $key.$_FILES['photouploads']['name'][$key];
     $file_size =$_FILES['photouploads']['size'][$key];
     $file_tmp =$_FILES['photouploads']['tmp_name'][$key];
     $file_type=$_FILES['photouploads']['type'][$key];
-		
+    
     $extensions = array("jpeg","jpg","gif");
-    $file_ext=explode('.',$_FILES['photouploads']['name'][$key])	;
+    $file_ext=explode('.',$_FILES['photouploads']['name'][$key]);
     $file_ext=end($file_ext);  
     $file_ext=strtolower(end(explode('.',$_FILES['photouploads']['name'][$key])));  
     if(in_array($file_ext,$extensions ) === false){
-    	$errors[]="extension not allowed";
+      $errors[]="extension not allowed";
     }
     if($_FILES['photouploads']['size'][$key] > 5242880){
-	    $errors[]='File size must be less tham 5 MB';
-    }	
-		
-		$percent = 0.5;
-		list($width, $height) = getimagesize($tmp_name);
-		$newwidth = $width * $percent;
-		$newheight = $height * $percent;
-
-		$thumbnail = imagecreatetruecolor($newwidth, $newheight);
-
-
+      $errors[]='File size must be less tham 5 MB';
+    } 
+    
+    $percent = 0.5;
+    list($width, $height) = getimagesize($tmp_name);
+    $newwidth = $width * $percent;
+    $newheight = $height * $percent;
+    $thumbnail = imagecreatetruecolor($newwidth, $newheight);
       if ($file_ext == 'jpeg') {
-      	$img = imagecreatefromjpeg($tmp_name);
+        $photo = imagecreatefromjpeg($tmp_name);
       }
       else if ($file_ext == 'jpg') {
-      	$img = imagecreatefromjpeg($tmp_name);      
+        $photo = imagecreatefromjpeg($tmp_name);      
       }
       else if ($file_ext == 'gif') {
-      	$img = imagecreatefromgif($tmp_name);      
+        $photo = imagecreatefromgif($tmp_name);      
       }
-
-      $photo = addslashes($_FILES['photouploads']['tmp_name'][$key]);
-      $photo = file_get_contents($photo);
-
-
-
-
-		imagecopyresized($thumbnail, $img, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
-/***
+    imagecopyresized($thumbnail, $photo, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+    
       ob_start();
       imagejpeg($photo);
       $contentsphoto =  ob_get_contents();
       ob_end_clean();
-		//$photo = base64_encode($contentsphoto);
-		$photo = $contentsphoto;
-***/
+    $photo = $contentsphoto;
+    
       ob_start();
       imagejpeg($thumbnail);
       $contentsthumbnail =  ob_get_contents();
       ob_end_clean();
-		//$thumbnail = base64_encode($contentsthumbnail);
-		$thumbnail = $contentsthumbnail;
-
-		$thumbnailblob = oci_new_descriptor($conn, OCI_D_LOB);
-		$photoblob = oci_new_descriptor($conn, OCI_D_LOB);
-
-		$insertquery = "INSERT INTO images VALUES (:photo_id, :username, :permission, :subject, :place, :timing, :description, empty_blob(), empty_blob() ) RETURNING thumbnail, photo INTO :thumbnail, :photo";
-		$stid1 = oci_parse($conn, $insertquery);
+    $thumbnail = $contentsthumbnail;
+    
+    $thumbnailblob = oci_new_descriptor($conn, OCI_D_LOB);
+    $photoblob = oci_new_descriptor($conn, OCI_D_LOB);
+    
+    $insertquery = "INSERT INTO images VALUES (:photo_id, :username, :permission, :subject, :place, :timing, :description, empty_blob(), empty_blob() ) RETURNING thumbnail, photo INTO :thumbnail, :photo";
+    $stid1 = oci_parse($conn, $insertquery);
         oci_bind_by_name($stid1, ":photo_id", $photo_id);
         oci_bind_by_name($stid1, ":username", $username);
         oci_bind_by_name($stid1, ":permission", $permission);
@@ -112,11 +90,8 @@ session_start();
         } else {
         oci_rollback($conn);
         }
-
 }
-	oci_close($conn);
-
-
+  oci_close($conn);
  ?>
 
 </body>

@@ -21,7 +21,7 @@ session_start();
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<title>Login | Photoshare</title>
+	<title>Login | PhotoInsanity</title>
 
 	<script src="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/t4t5/sweetalert/master/dist/sweetalert.css">
@@ -32,7 +32,9 @@ session_start();
 <body>
 	<div class="container">
 		<form action="PHPconnectionDB_final.php" method="post" class="form-signin">
-			<h2 class="form-signin-heading">Photoshare App</h2>
+
+			<h2 class="form-signin-heading">PhotoInsanity App</h2>
+
 			<div class="form-group">
 				<label for="username" class="sr-only">Username</label>
 				<input type="text" class="form-control" id="username" name="username" value="" maxlength="40" placeholder="Enter username">

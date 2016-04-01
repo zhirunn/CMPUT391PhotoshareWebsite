@@ -33,7 +33,7 @@
       $group_name = $_POST['group_name'];
       $password = $_POST['leader_name'];
 
-      $conn=oci_connect("gd1", "N1o2t3h4i5");
+      $conn=oci_connect("wong5", "Justin15Wong");
       $sql = ("SELECT * FROM groups WHERE group_name = :group_name");
       $stid = oci_parse($conn,$sql);
       //$stid2 = oci_parse($conn,$sql2);

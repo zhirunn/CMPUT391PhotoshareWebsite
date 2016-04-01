@@ -2,7 +2,9 @@
  *  File name:  setup.sql
  *  Function:   to create the initial database schema for the CMPUT 391 project: An Online Image Sharing System
  *              Winter, 2016 for our group
- *  Author:     Prof. Li-Yan Yuan, Preyanshu Kumar
+
+ *  Author:     Prof. Li-Yan Yuan, Preyanshu Kumar, Justin Wong
+
  */
 DROP TABLE images;
 DROP TABLE group_lists;
@@ -17,6 +19,8 @@ CREATE TABLE users (
    date_registered date,
    primary key(user_name)
 );
+
+INSERT INTO users values('admin','admin',sysdate);
 
 CREATE TABLE persons (
    user_name  varchar(24),
@@ -79,4 +83,7 @@ INDEXTYPE IS CTXSYS.CONTEXT;
 
 CREATE INDEX descriptionindex
 ON images(description) 
+
 INDEXTYPE IS CTXSYS.CONTEXT;
+
+

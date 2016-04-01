@@ -1,3 +1,43 @@
+<<<<<<< HEAD
+<?php
+  session_start();
+  $user = $_SESSION['username'];
+  
+  $conn = oci_connect('gd1', 'N1o2t3h4i5');
+  
+  
+?>
+
+
+
+
+
+
+
+<?php
+    echo "<table border='5'; style='width:100%'>\n";      
+    echo "<tr>\n";
+    $counter = 0;
+    while (($arr = oci_fetch_row($stmt)) != false) {
+  		$photo_id = oci_fetch_row($stmt2);
+      $pic = $arr['0']->load();
+  		$_POST['photo_id']=$photo_id;
+      		
+      echo '<td><p><a href="moreinfo.php?photo_id='.$photo_id['0'].'"><img src="Data:image/jpeg;base64,'.base64_encode($pic).'" class="img-rounded" alt="Cover" height="100" width="100">';
+  		echo'</a></p>';
+  		echo '<br></br>';
+  				
+      $counter = $counter+1;
+  		if ($counter==6){
+  			$counter = 0;
+  			echo "</tr>\n";           
+  		}
+  	}
+        
+   echo "</tr>\n";
+   echo "</table>\n";
+?>
+=======
 <div class="container">
 <style>
   .container {
@@ -86,3 +126,4 @@
 <!http://stackoverflow.com/questions/20311557/how-to-use-the-get-method-to-get-the-id-of-the-href-that-is-clicked>
 <!http://www.eobcards.com/tables102.htm>
 <!http://stackoverflow.com/questions/3053205/how-create-table-only-using-div-tag-and-css>
+>>>>>>> master

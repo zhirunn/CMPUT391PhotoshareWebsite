@@ -2,6 +2,21 @@
 <h1><center>Data Analysis</center></h1>
 <br>
 <br>
+<<<<<<< HEAD
+<div class="admin_container">
+<form id='submit' name='submitForm' action="admin_output.php" method="post" class="admin-submit" onsubmit="return validate();">
+<div>
+<label><center><input type="checkbox" id="user" name="user" value="user_checkbox"> <font size="5"> User </font></label></center><br>
+</div>
+<div>
+<label><center><input type="checkbox" id="subject" name="subject" value="subject_checkbox"> <font size="5"> Subject </font></label></center><br>
+</div>
+
+<center><div> <font size="5"> Time: </font>
+    <input type="radio" id="time" name="time" value="weekly" onclick="hideHidden();" ><font size="4">Weekly </font>
+    <input type="radio" id="time" name="time" value="monthly" onclick="hideHidden();" ><font size="4">Monthly </font>
+    <input type="radio" id="time" name="time" value="yearly" onclick="hideHidden();"><font size="4">Yearly </font>
+=======
 <div>
 <label><center><input type="checkbox" id="cbox1" name="cbox1" value="first_checkbox"> <font size="5"> User </font></label></center><br>
 </div>
@@ -13,17 +28,23 @@
     <input type="radio" name="time" value="weekly" onclick="hideHidden();" ><font size="4">Weekly </font>
     <input type="radio" name="time" value="monthly" onclick="hideHidden();" ><font size="4">Monthly </font>
     <input type="radio" name="time" value="yearly" onclick="hideHidden();"><font size="4">Yearly </font>
+>>>>>>> master
 </div></center>
 <br>
 <center><div>
     <input type="submit" name="submit" value="Submit">
 </div></center>
+<<<<<<< HEAD
+</form>
+</div>
+=======
 
 
 
 
 
 
+>>>>>>> master
 
 
 
