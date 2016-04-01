@@ -50,6 +50,7 @@
 </nav>
 
 <?php
+	session_start();
 	//NEED TO REBUILD ALL OF OUR TABLES!
 	$conn=oci_connect("gd1", "N1o2t3h4i5");
 	function rebuild($conn) {
@@ -62,8 +63,8 @@
 	$res=oci_execute($stid);
 	$stid = oci_parse($conn, $rebuildd);	    
 	$res=oci_execute($stid);
-}
-	session_start();
+	oci_commit($conn);
+	}
 	//grab literally everything you need, username, description of pictures, the subject of picturs, place, dates given, keywords, and the serach by from the last thing. This is all used for the total query
 	$user=$_SESSION['username'];
 	$description=$_POST['description'];
