@@ -43,7 +43,9 @@ session_start();
 	//print_r($result);
 	
 	?>
-	
+	<?php 
+		//to do under get rid of that shit plz
+	?>
 	<table width=\"100%\" align=\"center\" cellpadding=\"5\" cellspacing=\"5\">
 	<tr align=\"center\" class=\"source1\">
 	<?php

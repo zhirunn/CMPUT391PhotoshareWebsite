@@ -74,7 +74,7 @@
 			if(!empty($keywords)){
 				$search_cond .= ' AND';
 			}
-			$sqlsearchcheck .= 'i.timing between to_date( \''.$start_date.'\', \'mm/dd/yyyy\' )and to_date( \''.$end_date.'\', \'mm/dd/yyyy\' )';
+			$sqlsearchcheck .= 'i.timing between to_date( \''.$start_date.'\', \'mm/dd/yyyy\' ) and to_date( \''.$end_date.'\', \'mm/dd/yyyy\' )';
 		}
 		//have to fulfill the check "are accessible to the user by the security module". ie. make it so that it if its 1. public anyone can see it, 2. make it shareable to public, 3. private to only that user, unless its to a designated group or theyre the owner
 		//						 1.here					2. here                                                      
@@ -97,38 +97,22 @@
 		//run after its all added up depending on what you searched for at that time
 		$conn=oci_connect("gd1", "N1o2t3h4i5");
 		$sqlimagecheck=('SELECT i.photo_id FROM images i WHERE '.$sqlsearchcheck);
-		//echo $sqlimagecheck;
+		echo $sqlimagecheck;
 		$stid = oci_parse($conn, $sqlimagecheck);
 		$results=oci_execute($stid);
 		//referenced from Example 6 in PHP Lab
 		while ($row=oci_fetch_array($stid,OCI_BOTH)){
 	    	$photo_display= $row['PHOTO_ID'];
-	    	echo '<a href="imagegallery.php?id='.$photo_display.'"><img src="getImage.php?id='.$photo_display.'&type=thumbnail" width="100" height="100" />';
+	    	echo '<a href="imagegallery.php?id=$photo_display"><img src="getImageThumb.php?id=$photo_display &type=thumbnail" width="100" height="100" />';
 	    }
-		
-		// test code grab results
-		/*$search_list=oci_fetch_all($stid, $results);
-		//send everything to an array as you look at each value
-		$search_list_to_send=array();
-		foreach ($search_list as $value){
-			//push this to our result list!
-			array_push($search_list_to_send, $value);
-		}
-		//check if the images are empty or not
-		if (!empty($search_list_to_send)){
-			//if its empty append it to session and then send it to a showcasing thing
-			$_SESSION['final_result'] = $search_list_to_send;
-			//header("Location: search_result.php");
-		}
-	else {
-		//still send it but like make a different display as a result
-		$_SESSION['final_result'] = null;
-		//header("Location: search_result.php");
 	}
-		*/
+	
+	else {
+		echo "No Results found";
 	}
 
 	//select i.photoid from images i where (contains(i.place,'forest',1)>0 or contains(i.subject,'forest',2)>0 or contains(i.description,'forest',3)>0) and ((i.permitted = 1) or (i.permitted = 2 and i.owner_name = 'test') or (i.permitted <> 1 and i.permitted <> 2 and i.permitted in (select group_id from group_lists where friend_id = 'test' or (select group_id from groups where user_name='test')))order by(rank() over (order by(6*score(2)+3*score(1)+score(3)))) desc)
 ?>
+</html>
 
 
