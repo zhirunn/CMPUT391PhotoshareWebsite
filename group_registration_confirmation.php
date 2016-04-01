@@ -16,7 +16,7 @@
 </style>
 <html>
    <form class = "main_menu return" role = "form"
-    action = "group_signup.php" method = "post">
+    action = "group_homepage.php" method = "post">
     <button class = "btn btn-lg btn-primary btn-block" type= "submit" name="loginscreen">Return to Group Screen</button>
   </form>
 
@@ -31,7 +31,6 @@
     
     <?php
       $group_name = $_POST['group_name'];
-      $password = $_POST['leader_name'];
 
       $conn=oci_connect("gd1", "N1o2t3h4i5");
       $sql = ("SELECT * FROM groups WHERE group_name = :group_name");
@@ -39,12 +38,8 @@
       //$stid2 = oci_parse($conn,$sql2);
       //oci_bind_by_name, use this shit
       oci_bind_by_name($stid,":group_name",$group_name);
-      //oci_bind_by_name($stid2,":email",$email);
-      //$res=oci_execute($stid);
       oci_execute($stid);
-      //oci_execute($stid2);
       $count = oci_fetch($stid);
-      //$count2 = oci_fetch($stid2);
       if ($count != false){
           $message = "That Group Name is taken. Please choose another.";
           echo "<script type='text/javascript'>sweetAlert('$message');</script>";
@@ -55,8 +50,7 @@
         //$sqladduser = "INSERT INTO users VALUES (\".$user_name"',\'' ".$password"',\'' ".date(r)")";
         $datereg = date("d/M/Y");
         $group_id = rand(3,100);
-        $leader_name = $_SESSION['user_name'];
-        //groups(group_id,user_name,group_name,date_created)
+        $leader_name = $_SESSION['username'];
         $sqladdgroup = ("INSERT INTO groups VALUES (:group_id, :leader_name, :group_name, :datereg)");
         $stid = oci_parse($conn, $sqladdgroup);
         oci_bind_by_name($stid, ":group_id", $group_id);
@@ -72,4 +66,5 @@
         }
       }
       oci_close($conn);
+
     ?>
