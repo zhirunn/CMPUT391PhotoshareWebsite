@@ -1,4 +1,5 @@
 <?php
+
   $usern = $_SESSION["username"];
   $id = $_GET['id'];
   $type = 'thumbnail';
@@ -16,10 +17,12 @@
   $type = strtoupper($type);
   $result = $row[$type]->load();
   
-  
   header("Content-type: image/jpeg");
   echo $result;
   
   oci_close($conn);
 ?>
+
+<!http://stackoverflow.com/questions/8499633/how-to-display-base64-images-in-html>
+<!http://stackoverflow.com/questions/7793009/how-to-retrieve-images-from-mysql-database-and-display-in-an-html-tag>
 

@@ -60,6 +60,7 @@ session_start();
 </body>
 </html>
 <style>
+<<<<<<< HEAD
   	body {
     	background-color: #008080;
     	background-size: relative;
@@ -69,4 +70,13 @@ session_start();
 </style>
 
 <!Sources:>
+=======
+  body {
+    background-color: #008080;
+    background-size: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
+>>>>>>> master
 <!http://www.phpro.org/tutorials/Basic-Login-Authentication-with-PHP-and-MySQL.html>

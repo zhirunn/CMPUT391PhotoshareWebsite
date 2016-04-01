@@ -83,6 +83,7 @@ include ("PHPconnectionDB.php");
         oci_bind_by_name($stid, ":email", $email);
         oci_bind_by_name($stid, ":phonenum", $phonenum);
         oci_execute($stid);
+        oci_commit($conn);
       }
       oci_close($conn);
 

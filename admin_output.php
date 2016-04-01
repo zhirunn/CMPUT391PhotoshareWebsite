@@ -3,6 +3,7 @@
 <?php
 $conn = oci_connect('gd1', 'N1o2t3h4i5');
 
+
 if(isset($_POST['user']) or isset($_POST['subject']) or isset($_POST['time'])) {
   $query0 = "SELECT ";
   $query1 = " GROUP BY ";
@@ -70,3 +71,4 @@ oci_close($conn);
 </html>
 
 <!Collaboration with Ismail Mare>
+

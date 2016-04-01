@@ -6,10 +6,20 @@ session_start();
 <body>
 
 <?php
+<<<<<<< HEAD
 	include ("PHPconnectionDB_final.php");
 	$conn=oci_connect("gd1", "N1o2t3h4i5");
 	$username = $_SESSION['username'];
 	$permission = $_POST['permission'];
+=======
+	include ("PHPconnectionDB.php");
+
+	$conn=oci_connect("gd1", "N1o2t3h4i5");
+
+	$username = $_SESSION['username'];
+	$permission = $_POST['permission'];
+
+>>>>>>> master
 	if ($permission == "public") {
 		$permission = 1;
 	} else if($permission == "private") {
@@ -23,6 +33,10 @@ session_start();
 	$time = strtotime($timing);	
 	$timing = date("d/M/Y",$time);
 	$description = $_POST['description'];
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 	foreach ($_FILES['photouploads']['tmp_name'] as $key => $tmp_name) {
     $photo_id = mt_rand();
     $file_name = $key.$_FILES['photouploads']['name'][$key];
@@ -31,7 +45,11 @@ session_start();
     $file_type=$_FILES['photouploads']['type'][$key];
 		
     $extensions = array("jpeg","jpg","gif");
+<<<<<<< HEAD
     $file_ext=explode('.',$_FILES['photouploads']['name'][$key]);
+=======
+    $file_ext=explode('.',$_FILES['photouploads']['name'][$key])	;
+>>>>>>> master
     $file_ext=end($file_ext);  
     $file_ext=strtolower(end(explode('.',$_FILES['photouploads']['name'][$key])));  
     if(in_array($file_ext,$extensions ) === false){
@@ -46,6 +64,7 @@ session_start();
 		$newwidth = $width * $percent;
 		$newheight = $height * $percent;
 		$thumbnail = imagecreatetruecolor($newwidth, $newheight);
+<<<<<<< HEAD
       if ($file_ext == 'jpeg') {
       	$photo = imagecreatefromjpeg($tmp_name);
       }
@@ -57,18 +76,52 @@ session_start();
       }
 		imagecopyresized($thumbnail, $photo, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 		
+=======
+
+
+      if ($file_ext == 'jpeg') {
+      	$img = imagecreatefromjpeg($tmp_name);
+      }
+      else if ($file_ext == 'jpg') {
+      	$img = imagecreatefromjpeg($tmp_name);      
+      }
+      else if ($file_ext == 'gif') {
+      	$img = imagecreatefromgif($tmp_name);      
+      }
+
+      $photo = addslashes($_FILES['photouploads']['tmp_name'][$key]);
+      $photo = file_get_contents($photo);
+
+
+
+
+		imagecopyresized($thumbnail, $img, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+/***
+>>>>>>> master
       ob_start();
       imagejpeg($photo);
       $contentsphoto =  ob_get_contents();
       ob_end_clean();
+<<<<<<< HEAD
 		$photo = $contentsphoto;
 		
+=======
+		//$photo = base64_encode($contentsphoto);
+		$photo = $contentsphoto;
+***/
+>>>>>>> master
       ob_start();
       imagejpeg($thumbnail);
       $contentsthumbnail =  ob_get_contents();
       ob_end_clean();
+<<<<<<< HEAD
 		$thumbnail = $contentsthumbnail;
 		
+=======
+		//$thumbnail = base64_encode($contentsthumbnail);
+		$thumbnail = $contentsthumbnail;
+
+>>>>>>> master
 		$thumbnailblob = oci_new_descriptor($conn, OCI_D_LOB);
 		$photoblob = oci_new_descriptor($conn, OCI_D_LOB);
 		
@@ -90,6 +143,10 @@ session_start();
         } else {
         oci_rollback($conn);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 }
 	oci_close($conn);
  ?>

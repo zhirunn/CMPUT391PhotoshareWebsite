@@ -1,0 +1,88 @@
+<div class="container">
+<style>
+  .container {
+    width: 80%
+    margin: 30px auto;
+    overflow: hidden;
+  }
+  .galleryItem {
+    color: #797478;
+    font: 10px/1.5 Verdana, Helvetica, sans-serif, Times;
+    float: left;
+    width: 16%;
+    margin: 2% 2% 50px 2%;    
+  }
+  .galleryItem h3 {
+    text-transform: uppercase;
+  }
+  .galleryItem img {
+    max-width: 100%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+  }
+  @media only screen and (max-width : 940px),
+  only screen and (max-device-width : 940px){
+   .galleryItem {width: 21%;}
+  }
+  @media only screen and (max-width : 720px),
+  only screen and (max-device-width : 720px){
+   .galleryItem {width: 29.33333%;}
+  }
+ 
+  @media only screen and (max-width : 530px),
+  only screen and (max-device-width : 530px){
+   .galleryItem {width: 46%;}
+  }
+ 
+  @media only screen and (max-width : 320px),
+  only screen and (max-device-width : 320px){
+   .galleryItem {width: 96%;}
+   .galleryItem img {width: 96%;}
+   .galleryItem h3 {font-size: 18px;}
+   .galleryItem p, {font-size: 18px;}
+  }
+  
+</style>
+
+
+  <div class="galleryItem">
+  <a href="getImage.php?id=hap"><img src="getImageThumb.php?id=hap" method="GET" alt="" /></a>
+  <h3>Title</h3>
+  <p>I have no idea wtf I'm doing......</p>
+  </div>
+
+  <div class="galleryItem">
+  <a href="getImage.php"><img src="http://cdn.smosh.com/sites/default/files/bloguploads/potter-gifs-fires-3.gif" alt="" /></a>
+  <h3>Title</h3>
+  <p>Gary's a genius!</p>
+  </div>
+  
+  <div class="galleryItem">
+  <a href="#"><img src="http://www.picsymag.com/wp-content/uploads/2015/07/ani-09d9764935534b78129a0712b3a62078.gif" alt="" /></a>
+  <h3>Title</h3>
+  <p>No idea what to put here. :/</p>
+  </div>
+  
+  <div class="galleryItem">
+  <a href="#"><img src="https://media.giphy.com/media/xd0jV4utgDoFa/giphy.gif" alt="" /></a>
+  <h3>Title</h3>
+  <p>Huh?</p>
+  </div>
+  
+  <div class="galleryItem">
+  <a href="#"><img src="http://gifsec.com/wp-content/uploads/GIF/2015/06/Donald-Trump-2016.gif?gs=a" alt="" /></a>
+  <h3>Title</h3>
+  <p>Huh?</p>
+  </div>
+  
+  <div class="galleryItem">
+  <a href="#"><img src="http://www.picsymag.com/wp-content/uploads/2015/07/It-aint-funny-GIF.gif" alt="" /></a>
+  <h3>Title</h3>
+  <p>Huh?</p>
+  </div>
+</div>
+<!http://designshack.net/articles/css/how-to-build-a-responsive-thumbnail-gallery/>
+<!http://stackoverflow.com/questions/20311557/how-to-use-the-get-method-to-get-the-id-of-the-href-that-is-clicked>
+<!http://www.eobcards.com/tables102.htm>
+<!http://stackoverflow.com/questions/3053205/how-create-table-only-using-div-tag-and-css>

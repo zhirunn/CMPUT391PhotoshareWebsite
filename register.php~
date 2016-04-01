@@ -21,6 +21,7 @@
     <title>Login | Photoshare</title>
 
 </head>
+<<<<<<< HEAD
 <style type="text/css">
     .form-field {
         clear:both;
@@ -51,6 +52,15 @@
     }
 
 </style>
+=======
+<style>
+  body {
+    background-color: #008080;
+    background-size: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+}</style>
+>>>>>>> master
 
 <body>
     <h1>Create a New Account</h1>

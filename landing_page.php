@@ -13,6 +13,7 @@
    oci_execute($fn);
 	$first_name = oci_fetch_row($fn);
 	echo "<h1>Hello $first_name[0]</h1>";
+	//echo "$username";
   oci_close($conn);
  ?>
 <html lang = "en">
@@ -52,7 +53,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#">Gallery</a></li>
-        <li><a href="image_gallery.html">My Pictures</a></li>
+
+        <li><a href="image_gallery.php">My Pictures</a></li>
         <li><a href="getPhotoInfo.php">Upload Photo</a></li>
         <li><a href="group_homepage.php">Groups</a></li>
         <li><a href="search.php">Search</a></li>
@@ -64,6 +66,7 @@
         <?php endif; ?>
         </td>
         <li><a href="logout.php">Logout</a></li>
+
         <li role="separator" class="divider"></li>
       </ul>
       <form class="navbar-form navbar-right" role="search">
