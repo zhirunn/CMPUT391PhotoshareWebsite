@@ -9,13 +9,7 @@ session_start();
     $conn=oci_connect("gd1", "N1o2t3h4i5");
     $username = $_SESSION['username'];
     $permission = $_POST['permission'];
-    if ($permission == "public") {
-        $permission = 1;
-    } else if($permission == "private") {
-        $permission = 2;
-    } else {
-        $permission = $permission;
-    }
+
     $subject = $_POST['subject'];
     $place = $_POST['place'];
     $timing = $_POST['datepicker'];

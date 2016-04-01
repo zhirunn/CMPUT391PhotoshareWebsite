@@ -5,13 +5,7 @@
 	$place = $_POST['place'];
   	$description = $_POST['description'];
   	$permission = $_POST['permission'];
-    if ($permission == "public") {
-        $permission = 1;
-    } else if($permission == "private") {
-        $permission = 2;
-    } else {
-        $permission = $permission;
-    }
+
     $username=$_SESSION['username'];
     $photo_id=$_GET['id'];
 

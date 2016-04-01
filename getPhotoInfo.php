@@ -66,12 +66,6 @@ $(function() {
 });
 </script>
 
-<! Functionality based on advice from Hugh Craig.>
-<script>
-function showHidden() { document.getElementByID('groupid').style.display = 'block'; }
-function hideHidden() { document.getElementByID('groupid').style.display = 'none'; }
-</script>
-</head>
 
 <body>
 <h1>Upload</h1>
@@ -79,12 +73,6 @@ function hideHidden() { document.getElementByID('groupid').style.display = 'none
 <form action="upload.php" enctype="multipart/form-data" method="post">
 <fieldset>
     <legend>Photo Information</legend>
-    <div>Permissions: <br />
-        <input type="radio" name="permission" value="private" onclick="hideHidden();" checked>Private<br>
-        <input type="radio" name="permission" value="public" onclick="hideHidden();" >Public<br>
-        <input type="radio" name="permission" value="specific group" onclick="showHidden();">Specific Group<br>
-        <input type="text" name="groupID" class = "form-control" id="groupID" style="display:none; width:400px" placeholder="Group ID">
-    </div>
     <div>
         <label for="subject">Subject:</label>
         <input id="subject" type="text" name="subject">
@@ -110,6 +98,8 @@ function hideHidden() { document.getElementByID('groupid').style.display = 'none
     </div>
     <div>
         <label for="photouploads">Photo(s) to include:</label><input id="photouploads" name="photouploads[]" type="file" multiple/></br>
+    </div>
+        <input id="group_id" type="text" name="permission" size="80" maxsize="" placeholder="1 for public, 2 for private, any other number for other groups">
     </div>
     <div>
         <input type="submit" name="submit" value="Upload">
